@@ -50,6 +50,13 @@
                                     class="img-fluid for-dark" src="{{ asset('assets/') }}/images/logo/logo_dark.png"
                                     alt="looginpage"></a></div>
                         <div class="login-main">
+                            @if ($message = Session::get('message'))
+                                <div class="alert alert-warning dark alert-dismissible fade show" role="alert">
+                                    {{ $message }}
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
                             <form class="theme-form" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <h4>Sign in to account</h4>

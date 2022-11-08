@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -21,8 +22,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
-    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -58,6 +57,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -74,5 +78,11 @@ class RegisterController extends Controller
             'no_hp'=>$data['no_hp'],
             'role'=>'santri'
         ]);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $this->create($request->all());
+        return redirect()->route('login')->with(['message'=>'Register Berhasil']);
     }
 }
