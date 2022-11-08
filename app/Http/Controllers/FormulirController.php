@@ -98,7 +98,8 @@ class FormulirController extends Controller
 
     public function cetak()
     {
-        $pendaftaran = Pendaftaran::where('user_id',auth()->user()->id)->first();
+        $pendaftaran = Pendaftaran::with('santri')->where('user_id',auth()->user()->id)->first();
+        // return $pendaftaran;
         return view('pages.formulir.cetak',compact('pendaftaran'));
     }
 }

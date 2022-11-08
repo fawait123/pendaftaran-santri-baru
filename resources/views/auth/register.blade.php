@@ -56,7 +56,7 @@
                                 <p>Enter your personal details to create account</p>
                                 <div class="form-group">
                                     <label class="col-form-label">Nama Lengkap</label>
-                                    <input class="form-control" type="text"
+                                    <input type="text"
                                         class="form-control @error('nama_lengkap') is-invalid @enderror"
                                         name="nama_lengkap" value="{{ old('nama_lengkap') }}"
                                         placeholder="nama lengkap">
@@ -68,9 +68,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">Username</label>
-                                    <input class="form-control" type="text"
-                                        class="form-control @error('username') is-invalid @enderror" name="username"
-                                        value="{{ old('username') }}" placeholder="username">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        name="username" value="{{ old('username') }}" placeholder="username">
                                     @error('username')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -89,9 +88,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">NO HP</label>
-                                    <input class="form-control" type="text"
-                                        class="form-control @error('no_hp') is-invalid @enderror" name="no_hp"
-                                        value="{{ old('no_hp') }}" placeholder="08xxxx">
+                                    <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
+                                        name="no_hp" value="{{ old('no_hp') }}" placeholder="08xxxx">
                                     @error('no_hp')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

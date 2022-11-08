@@ -42,6 +42,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/responsive.css">
     {{-- dropify --}}
     <link rel="stylesheet" href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}">
+    <style>
+        .active-menu {
+            background: #d4d0fc;
+        }
+    </style>
 </head>
 
 <body onload="startTime()">

@@ -15,21 +15,17 @@
             <p class="lan-2">Master Data</p>
         </div>
     </li>
-    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
-                data-feather="edit"></i><span>Editors</span></a>
-        <ul class="sidebar-submenu">
-            <li><a href="summernote.html">Summer Note</a></li>
-            <li><a href="ckeditor.html">CK editor</a></li>
-            <li><a href="simple-MDE.html">MDE editor</a></li>
-            <li><a href="ace-code-editor.html">ACE code editor </a></li>
-        </ul>
-    </li>
+    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                data-feather="edit-3"></i><span>Data Pendaftar</span></a></li>
+    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                data-feather="crop"></i><span>Data Seleksi</span></a></li>
     <li class="sidebar-main-title">
         <div>
             <p class="lan-2">Laporan</p>
         </div>
     </li>
-    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="support-ticket.html"><i
-                data-feather="users"> </i><span>Support
-                Ticket</span></a></li>
+    < <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                data-feather="compass"></i><span>Laporan Santri Baru</span></a></li>
+        <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
+                    data-feather="clipboard"></i><span>Laporan Seleksi</span></a></li>
 </ul>
