@@ -95,4 +95,10 @@ class FormulirController extends Controller
         $no_urut = 'SN-'.date('YmdHis').$count;
         return $no_urut;
     }
+
+    public function cetak()
+    {
+        $pendaftaran = Pendaftaran::where('user_id',auth()->user()->id)->first();
+        return view('pages.formulir.cetak',compact('pendaftaran'));
+    }
 }

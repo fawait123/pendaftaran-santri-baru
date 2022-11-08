@@ -7,4 +7,6 @@
                 data-feather="home"></i><span>Dashboard</span></a></li>
     <li class="sidebar-list active"><a class="sidebar-link sidebar-title link-nav"
             href="{{ route('formulir.index') }}"><i data-feather="users"> </i><span>Lengkapi Formulir</span></a></li>
+    <li class="sidebar-list active"><a class="sidebar-link sidebar-title link-nav"
+            href="{{ route('formulir.cetak') }}"><i data-feather="users"> </i><span>Cetak Formulir</span></a></li>
 </ul>

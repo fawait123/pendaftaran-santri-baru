@@ -24,3 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('formulir',[FormulirController::class,'index'])->name('formulir.index');
 Route::post('formulir',[FormulirController::class,'store'])->name('formulir.store');
+Route::get('formulir/cetak',[FormulirController::class,'cetak'])->name('formulir.cetak');
