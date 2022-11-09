@@ -32,6 +32,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/vendors/chartist.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/vendors/date-picker.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/vendors/photoswipe.css">
+    <!-- Plugins css Ends-->
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/vendors/bootstrap.css">
@@ -47,6 +51,7 @@
             background: #d4d0fc;
         }
     </style>
+    <livewire:styles />
 </head>
 
 <body onload="startTime()">
@@ -244,6 +249,7 @@
     <script src="{{ asset('assets') }}/js/typeahead/typeahead.custom.js"></script>
     <script src="{{ asset('assets') }}/js/typeahead-search/handlebars.js"></script>
     <script src="{{ asset('assets') }}/js/typeahead-search/typeahead-custom.js"></script>
+    <script src="{{ asset('assets') }}/js/sidebar-menu.js"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('assets') }}/js/script.js"></script>
@@ -252,6 +258,7 @@
     <!-- Plugin used-->
     {{-- dropify --}}
     <script src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
+    <livewire:scripts />
     @stack('customjs')
 </body>
 

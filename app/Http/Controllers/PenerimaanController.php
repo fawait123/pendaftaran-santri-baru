@@ -7,6 +7,10 @@ use App\Models\Pendaftaran;
 
 class PenerimaanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $pendaftaran = Pendaftaran::with('santri')->where('user_id',auth()->user()->id)->first();
