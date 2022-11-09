@@ -8,17 +8,21 @@
             <p class="lan-2">Dashboard</p>
         </div>
     </li>
-    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
-                data-feather="home"></i><span>Dashboard</span></a></li>
+    <li class="sidebar-list"><a
+            class="sidebar-link sidebar-title link-nav {{ Request::is('home') ? 'active-menu' : '' }}"
+            href="{{ route('home') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
     <li class="sidebar-main-title">
         <div>
             <p class="lan-2">Master Data</p>
         </div>
     </li>
-    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
-                data-feather="edit-3"></i><span>Data Pendaftar</span></a></li>
-    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('home') }}"><i
-                data-feather="crop"></i><span>Data Seleksi</span></a></li>
+    <li class="sidebar-list"><a
+            class="sidebar-link sidebar-title link-nav {{ Request::is('admin/pendaftaran*') ? 'active-menu' : '' }}"
+            href="{{ route('admin.pendaftar.index') }}"><i data-feather="edit-3"></i><span>Data Pendaftar</span></a>
+    </li>
+    <li class="sidebar-list"><a
+            class="sidebar-link sidebar-title link-nav {{ Request::is('admin/seleksi*') ? 'active-menu' : '' }}"
+            href="{{ route('admin.seleksi.index') }}"><i data-feather="crop"></i><span>Data Seleksi</span></a></li>
     <li class="sidebar-main-title">
         <div>
             <p class="lan-2">Laporan</p>

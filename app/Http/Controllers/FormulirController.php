@@ -12,6 +12,10 @@ use Throwable;
 
 class FormulirController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $jenjang = Pendidikan::all();
@@ -66,8 +70,7 @@ class FormulirController extends Controller
 
             return redirect()->route('formulir.index')->with('success','Pendaftaran Santri Baru Berhasil');
         }catch(Exception $error){
-            // return redirect()->route('formulir.index')->with('error',$error->getMessage());
-            dd($error->getMessage());
+            return redirect()->route('formulir.index')->with('error',$error->getMessage());
         }
     }
 
