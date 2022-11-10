@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Seleksi extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class,'pendaftaran_id');
+    }
 }

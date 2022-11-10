@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\SeleksiRequest;
+use App\Models\Seleksi;
+use App\Models\Pendaftaran;
 
 class SeleksiController extends Controller
 {
@@ -28,7 +31,8 @@ class SeleksiController extends Controller
      */
     public function create()
     {
-        //
+        $pendaftaran = Pendaftaran::with('santri')->get();
+        return view('pages.admin.seleksi.create',compact('pendaftaran'));
     }
 
     /**
@@ -37,9 +41,21 @@ class SeleksiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeleksiRequest $request)
     {
-        //
+        $total = $request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara;
+        Seleksi::create([
+            'no_seleksi'=>$this->IDSeleksi(),
+            'pendaftaran_id' => $request->pendaftaran_id,
+            'nilai_baca_alquran' => $request->nilai_baca_alquran,
+            'nilai_wawancara'=>$request->nilai_wawancara,
+            'nilai_tulis_arab' => $request->nilai_tulis_arab,
+            'total_penilaian' => $total,
+            'kamar' => $request->kamar,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('admin.seleksi.index')->with(['message' =>'Berhasil menambah data seleksi']);
     }
 
     /**
@@ -61,7 +77,13 @@ class SeleksiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $check = Seleksi::with('pendaftaran.santri')->where('id',$id)->first();
+        if($check){
+            $pendaftaran = Pendaftaran::with('santri')->get();
+            return view('pages.admin.seleksi.edit',compact('check','pendaftaran'));
+        }
+
+        return abort(404);
     }
 
     /**
@@ -71,9 +93,22 @@ class SeleksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SeleksiRequest $request, $id)
     {
-        //
+        $check = Seleksi::find($id);
+        if($check){
+            $total = $request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara;
+            Seleksi::where('id',$id)->update([
+                'nilai_baca_alquran' => $request->nilai_baca_alquran,
+                'nilai_wawancara'=>$request->nilai_wawancara,
+                'nilai_tulis_arab' => $request->nilai_tulis_arab,
+                'total_penilaian' => $total,
+                'kamar' => $request->kamar,
+                'keterangan' => $request->keterangan,
+            ]);
+            return redirect()->route('admin.seleksi.index')->with(['message' =>'Data berhasil diupdate']);
+        }
+        return redirect()->route('admin.seleksi.index')->with(['message' =>'Oppps error']);
     }
 
     /**
@@ -85,5 +120,13 @@ class SeleksiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function IDSeleksi()
+    {
+        $count = Seleksi::count();
+        $count++;
+        $no_urut = 'SN-'.date('YmdHis').$count;
+        return $no_urut;
     }
 }

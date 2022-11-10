@@ -21,9 +21,9 @@ class Seleksi extends Component
     public function render()
     {
         $data = ModelSeleksi::query();
-        // $data = $data->with('santri');
+        $data = $data->with('pendaftaran.santri');
         if($this->search != ''){
-            $data = $data->where('id_seleksi','like','%'.$this->search.'%')->orWhereHas('santri',function($q){
+            $data = $data->where('no_seleksi','like','%'.$this->search.'%')->orWhereHas('pendaftaran.santri',function($q){
                 $q->where('nama_lengkap','like','%'.$this->search.'%');
             });
         }
