@@ -1,8 +1,12 @@
 <div>
     <div>
         <div class="row justify-content-end mb-3">
-            <div class="col-xl-4  text-end">
+            <div class="col-xl-8  text-end">
                 <a href="{{ route('admin.pendaftar.create') }}" class="btn btn-primary btn-rounded">Tambah</a>
+                <a href="{{ route('admin.pendaftar.verifikasi.all') }}"
+                    onclick="return confirm('Yakin verifikasi semua data ? ')"
+                    class="btn btn-success btn-rounded">Verifikasi
+                    Semua</a>
             </div>
             <div class="col-xl-4">
                 <input wire:model="search" type="text" class="form-control" style="border-radius: 20px"
@@ -27,18 +31,35 @@
                         <td>{{ $item->no_daftar }}</td>
                         <td>{{ $item->santri->nama_lengkap }}</td>
                         <td>{{ $item->santri->email }}</td>
-                        <td><span class="badge badge-light-success"><i data-feather="check"></i>Done</span></td>
+                        <td>
+                            @if ($item->verifikasi == null)
+                                <span class="badge badge-light-danger"><i class="icofont icofont-ui-clock"></i>Belum
+                                    diverifikasi</span>
+                            @else
+                                <span class="badge badge-light-success"><i
+                                        class="icofont icofont-ui-check"></i>{{ $item->verifikasi == true ? 'Verifikasi' : 'Ditolak' }}</span>
+                            @endif
+                        </td>
                         <td class="text-center">
-                            <a href="{{ route('admin.pendaftar.detail', $item->id) }}" class="text-primary"><i
-                                    style="font-size: 19px" class="icofont icofont-open-eye"></i></a>
-                            <a href="{{ route('admin.pendaftar.edit', $item->id) }}" class="text-warning"><i
-                                    style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
-                            <a href="{{ route('admin.pendaftar.destroy', $item->id) }}"
+                            <a title="Verifikasi" href="{{ route('admin.pendaftar.verifikasi', $item->id) }}"
+                                onclick="event.preventDefault();return confirm('Verifikasi sekarang ?') ? document.getElementById('verifikasi-form{{ $item->id }}').submit() : false"
+                                class="text-primary {{ $item->verifikasi == true ? 'disabled-link' : '' }}"><i
+                                    style="font-size: 19px" class="icofont icofont-ui-fire-wall"></i></a>
+                            <a title="Detail" href="{{ route('admin.pendaftar.detail', $item->id) }}"
+                                class="text-primary"><i style="font-size: 19px"
+                                    class="icofont icofont-open-eye"></i></a>
+                            <a title="Edit" href="{{ route('admin.pendaftar.edit', $item->id) }}"
+                                class="text-warning"><i style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
+                            <a title="Hapus" href="{{ route('admin.pendaftar.destroy', $item->id) }}"
                                 onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>
                             <form action="{{ route('admin.pendaftar.destroy', $item->id) }}" method="post"
                                 id="delete-form{{ $item->id }}">
                                 @method('delete')
+                                @csrf
+                            </form>
+                            <form action="{{ route('admin.pendaftar.verifikasi', $item->id) }}" method="post"
+                                id="verifikasi-form{{ $item->id }}">
                                 @csrf
                             </form>
                         </td>

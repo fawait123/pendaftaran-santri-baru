@@ -58,7 +58,7 @@
                                                 <input
                                                     class="form-control @error('nilai_baca_alquran') is-invalid @enderror"
                                                     id="nilai_baca_alquran" type="text"
-                                                    value="{{ old('nilai_baca_alquran') }}" placeholder="Nama Lengkap"
+                                                    value="{{ old('nilai_baca_alquran') }}" placeholder="Nilai Baca Alquran"
                                                     name="nilai_baca_alquran">
                                                 @error('nilai_baca_alquran')
                                                     <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                                                 <label class="form-label" for="nilai_wawancara">Nilai Wawancara</label>
                                                 <input class="form-control @error('nilai_wawancara') is-invalid @enderror"
                                                     id="nilai_wawancara" type="text"
-                                                    value="{{ old('nilai_wawancara') }}" placeholder="Nama Lengkap"
+                                                    value="{{ old('nilai_wawancara') }}" placeholder="Nilai Wawancara"
                                                     name="nilai_wawancara">
                                                 @error('nilai_wawancara')
                                                     <span class="invalid-feedback" role="alert">
@@ -90,7 +90,7 @@
                                                 <label class="form-label" for="nilai_tulis_arab">Nilai Tulis Arab</label>
                                                 <input class="form-control @error('nilai_tulis_arab') is-invalid @enderror"
                                                     id="nilai_tulis_arab" type="text"
-                                                    value="{{ old('nilai_tulis_arab') }}" placeholder="Nama Lengkap"
+                                                    value="{{ old('nilai_tulis_arab') }}" placeholder="Nilai Tulis Arab"
                                                     name="nilai_tulis_arab">
                                                 @error('nilai_tulis_arab')
                                                     <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
                                                 <label class="form-label" for="kamar">Kamar</label>
                                                 <input class="form-control @error('kamar') is-invalid @enderror"
                                                     id="kamar" type="text" value="{{ old('kamar') }}"
-                                                    placeholder="Nama Lengkap" name="kamar">
+                                                    placeholder="Kamar" name="kamar">
                                                 @error('kamar')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
@@ -118,9 +118,46 @@
                                     <div class="row mt-3">
                                         <div class="col">
                                             <div class="mb-3">
+                                                <label class="form-label" for="kelas">Kelas</label>
+                                                <input class="form-control @error('kelas') is-invalid @enderror"
+                                                    id="kelas" type="text" value="{{ old('kelas') }}"
+                                                    placeholder="Kelas" name="kelas">
+                                                @error('kelas')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="status">Status</label>
+                                                <select name="status" id="status"
+                                                    class="form-control @error('status') is-invalid @enderror">
+                                                    <option value="">-- pilih --</option>
+                                                    <option value="lulus"
+                                                        {{ old('status') == 'lulus' ? 'selected' : '' }}>
+                                                        Lulus</option>
+                                                    <option value="tidak-lulus"
+                                                        {{ old('status') == 'tidak-lulus' ? 'selected' : '' }}>Tidak Lulus
+                                                    </option>
+                                                </select>
+                                                @error('status')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <div class="mb-3">
                                                 <label class="form-label" for="keterangan">Keterangan</label>
-                                                <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
-                                                    cols="30" rows="10">{{ old('keterangan') }}</textarea>
+                                                <textarea placeholder="Keterangan" name="keterangan" class="form-control @error('keterangan') is-invalid @enderror"
+                                                    id="keterangan" cols="30" rows="10">{{ old('keterangan') }}</textarea>
                                                 @error('keterangan')
                                                     <span class="invalid-feedback">{{ $message }}</span>
                                                 @enderror

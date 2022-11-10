@@ -133,6 +133,43 @@
                                     <div class="row mt-3">
                                         <div class="col">
                                             <div class="mb-3">
+                                                <label class="form-label" for="kelas">Kelas</label>
+                                                <input class="form-control @error('kelas') is-invalid @enderror"
+                                                    id="kelas" type="text" value="{{ $check->kelas }}"
+                                                    placeholder="Kelas" name="kelas">
+                                                @error('kelas')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="status">Status</label>
+                                                <select name="status" id="status"
+                                                    class="form-control @error('status') is-invalid @enderror">
+                                                    <option value="">-- pilih --</option>
+                                                    <option value="lulus"
+                                                        {{ $check->status == 'lulus' ? 'selected' : '' }}>
+                                                        Lulus</option>
+                                                    <option value="tidak-lulus"
+                                                        {{ $check->status == 'tidak-lulus' ? 'selected' : '' }}>Tidak Lulus
+                                                    </option>
+                                                </select>
+                                                @error('status')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            <div class="mb-3">
                                                 <label class="form-label" for="keterangan">Keterangan</label>
                                                 <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
                                                     cols="30" rows="10">{{ $check->keterangan }}</textarea>

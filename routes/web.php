@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DataPendaftarController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\SeleksiController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/persyaratan',function(){
+    $path = './persyaratan.pdf';
+    return Response::download($path);
+})->name('persyaratan.download');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -38,12 +44,14 @@ Route::get('informasi',[InformasiController::class,'index'])->name('informasi.in
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'pendaftaran'],function () {
         Route::get('/', [DataPendaftarController::class, 'index'])->name('admin.pendaftar.index');
+        Route::get('/verifikasi', [DataPendaftarController::class, 'verifikasiAll'])->name('admin.pendaftar.verifikasi.all');
         Route::get('create/', [DataPendaftarController::class, 'create'])->name('admin.pendaftar.create');
         Route::post('store/', [DataPendaftarController::class, 'store'])->name('admin.pendaftar.store');
         Route::get('/{id}', [DataPendaftarController::class, 'detail'])->name('admin.pendaftar.detail');
         Route::get('/edit/{id}', [DataPendaftarController::class, 'edit'])->name('admin.pendaftar.edit');
         Route::put('/{id}', [DataPendaftarController::class, 'update'])->name('admin.pendaftar.update');
         Route::delete('/{id}', [DataPendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
+        Route::post('/verifikasi/{id}', [DataPendaftarController::class, 'verifikasi'])->name('admin.pendaftar.verifikasi');
     });
     Route::group(['prefix' => 'seleksi'],function () {
         Route::get('/', [SeleksiController::class, 'index'])->name('admin.seleksi.index');

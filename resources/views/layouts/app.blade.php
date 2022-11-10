@@ -1,3 +1,8 @@
+@php
+    use App\Models\Notifkasi;
+
+    $notifications = Notifkasi::where('user_id', auth()->user()->id)->get();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +15,8 @@
     <meta name="keywords"
         content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets') }}/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets') }}/images/logo/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets') }}/images/logo/logo.png type="image/x-icon">
     <title>Cuba - Premium Admin Template</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
@@ -49,6 +54,10 @@
     <style>
         .active-menu {
             background: #d4d0fc;
+        }
+
+        .disabled-link {
+            pointer-events: none;
         }
     </style>
     <livewire:styles />
@@ -102,23 +111,23 @@
                     <ul class="nav-menus">
                         <li class="onhover-dropdown">
                             <div class="notification-box"><i data-feather="bell"> </i><span
-                                    class="badge rounded-pill badge-secondary">4 </span></div>
+                                    class="badge rounded-pill badge-secondary">{{ count($notifications) }}</span>
+                            </div>
                             <div class="onhover-show-div notification-dropdown">
                                 <h6 class="f-18 mb-0 dropdown-title">Notitications </h6>
                                 <ul>
-                                    <li class="b-l-primary border-4">
-                                        <p>Delivery processing <span class="font-danger">10 min.</span></p>
-                                    </li>
-                                    <li class="b-l-success border-4">
-                                        <p>Order Complete<span class="font-success">1 hr</span></p>
-                                    </li>
-                                    <li class="b-l-info border-4">
-                                        <p>Tickets Generated<span class="font-info">3 hr</span></p>
-                                    </li>
-                                    <li class="b-l-warning border-4">
-                                        <p>Delivery Complete<span class="font-warning">6 hr</span></p>
-                                    </li>
-                                    <li><a class="f-w-700" href="#">Check all</a></li>
+                                    @if (count($notifications) > 0)
+                                        @foreach ($notifications as $item)
+                                            <li class="b-l-primary border-4">
+                                                <p>{{ $item->notification }} <span
+                                                        class="font-danger">{{ $item->created_at->diffForHumans() }}</span>
+                                                </p>
+                                            </li>
+                                        @endforeach
+                                        <li><a class="f-w-700" href="#">Check all</a></li>
+                                    @else
+                                        <li class="b-l-primary border-4 disabled-link">Tidak Ada notifikasi</li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
@@ -162,9 +171,9 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
-                                src="{{ asset('assets') }}/images/logo/logo.png" alt=""><img
-                                class="img-fluid for-dark" src="{{ asset('assets') }}/images/logo/logo_dark.png"
+                    <div class="logo-wrapper"><a href="index.html"><img width="70px" class="img-fluid for-light"
+                                src="{{ asset('assets') }}/images/logo/logo.png" alt=""><img width="70px"
+                                class="img-fluid for-dark" src="{{ asset('assets') }}/images/logo/logo.png"
                                 alt=""></a>
                         <div class="back-btn"><i class="fa fa-angle-left"></i></div>
                         <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"

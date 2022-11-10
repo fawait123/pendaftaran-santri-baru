@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Santri;
+use App\Models\Seleksi;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $total_santri = Santri::count();
+        $total_seleksi = Seleksi::count();
+        return view('home',compact('total_santri', 'total_seleksi'));
     }
 }

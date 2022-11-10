@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SeleksiRequest;
 use App\Models\Seleksi;
 use App\Models\Pendaftaran;
+use App\Models\Notifkasi;
 
 class SeleksiController extends Controller
 {
@@ -53,6 +54,14 @@ class SeleksiController extends Controller
             'total_penilaian' => $total,
             'kamar' => $request->kamar,
             'keterangan' => $request->keterangan,
+            'kelas' =>$request->kelas,
+            'status' =>$request->status
+        ]);
+        $pendaftaran = Pendaftaran::find($request->pendaftaran_id);
+
+        Notifkasi::create([
+            'user_id' => $pendaftaran->user_id,
+            'notification'=>'Selamat anda '. $request->status=='lulus'?'LULUS':'TIDAK LULUS' .' tes Seleksi'
         ]);
 
         return redirect()->route('admin.seleksi.index')->with(['message' =>'Berhasil menambah data seleksi']);
@@ -105,6 +114,8 @@ class SeleksiController extends Controller
                 'total_penilaian' => $total,
                 'kamar' => $request->kamar,
                 'keterangan' => $request->keterangan,
+                'kelas' =>$request->kelas,
+                'status' =>$request->status
             ]);
             return redirect()->route('admin.seleksi.index')->with(['message' =>'Data berhasil diupdate']);
         }

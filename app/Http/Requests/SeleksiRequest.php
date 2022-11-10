@@ -28,7 +28,9 @@ class SeleksiRequest extends FormRequest
             'nilai_baca_alquran' => 'required|numeric',
             'nilai_wawancara'=>'required|numeric',
             'nilai_tulis_arab' => 'required|numeric',
-            'kamar' => 'required'
+            'kamar' => 'required',
+            'kamar' => 'required',
+            'status' => 'required',
         ];
 
         if(in_array($this->method(),['PUT','PATCH'])){
