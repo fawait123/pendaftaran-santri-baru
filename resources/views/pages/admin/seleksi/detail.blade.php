@@ -66,9 +66,17 @@
                                 <p style="width: 200px">No. Telp / HP</p>
                                 <p>: {{ $seleksi->pendaftaran->santri->no_hp }}</p>
                             </div>
-                            <div style="display: flex; margin-bottom:30px;">
+                            <div style="display: flex;">
                                 <p style="width: 200px">Email</p>
                                 <p>: {{ $seleksi->pendaftaran->santri->email }}</p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="width: 200px">Kamar</p>
+                                <p>: {{ $seleksi->kamar }}</p>
+                            </div>
+                            <div style="display: flex; margin-bottom:30px;">
+                                <p style="width: 200px">Kelas</p>
+                                <p>: {{ $seleksi->kelas }}</p>
                             </div>
                             <span class="text-secondary" style="font-weight: bold">Detail Nilai</span>
                             <div style="display: flex">
@@ -85,7 +93,17 @@
                             </div>
                             <div style="display: flex">
                                 <p style="width: 200px">Total Nilai</p>
-                                <p><span class="badge badge-primary">:{{ $seleksi->total_penilaian }}</span></p>
+                                <p>:<span class="badge badge-primary">{{ $seleksi->total_penilaian }}</span></p>
+                            </div>
+                            <div style="display: flex">
+                                <p style="width: 200px">Status</p>
+                                <p>:<span class="badge badge-primary">{{ $seleksi->status }}</span></p>
+                            </div>
+                            <div style="display: flex">
+                                <p style="width: 200px">Keterangan</p>
+                                <p>:<span
+                                        class="badge badge-primary">{{ $seleksi->keterangan == null ? 'Tidak ada keterangan' : $seleksi->keterangan }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>

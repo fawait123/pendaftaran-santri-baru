@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pendidikan;
 use App\Models\Pendaftaran;
+use App\Models\Notifkasi;
 use App\Models\Santri;
 use App\Http\Requests\PendaftaranRequest;
 use App\Http\Requests\FormulirRequest;
@@ -205,6 +206,42 @@ class DataPendaftarController extends Controller
         $count++;
         $no_urut = 'SN-'.date('YmdHis').$count;
         return $no_urut;
+    }
+
+    public function verifikasi($id)
+    {
+        $pendaftaran = Pendaftaran::with('santri')->find($id);
+        if($pendaftaran){
+            Pendaftaran::where('id',$id)->update([
+                'verifikasi' => true
+            ]);
+
+            Notifkasi::create([
+                'user_id'=>$pendaftaran->user_id,
+                'notification' => 'Formulir anda sudah diverifikasi'
+            ]);
+
+
+            return redirect()->route('admin.pendaftar.index')->with(['message'=>'Verifikasi berhasil']);
+        }
+
+        return redirect()->route('admin.pendaftar.index')->with(['message'=>'Opps error']);
+    }
+
+    public function verifikasiAll()
+    {
+        $pendaftaran = Pendaftaran::where('verifikasi',null)->get();
+        foreach($pendaftaran as $item){
+            Pendaftaran::where('id',$item->id)->update([
+                'verifikasi' => true
+            ]);
+            Notifkasi::create([
+                'user_id'=>$item->user_id,
+                'notification' => 'Formulir anda sudah diverifikasi'
+            ]);
+        }
+
+        return redirect()->route('admin.pendaftar.index')->with(['message'=>'Verifikasi berhasil']);
     }
 
 }
