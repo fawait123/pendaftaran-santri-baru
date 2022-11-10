@@ -23,12 +23,18 @@ class SeleksiRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'pendaftaran_id' => 'required',
             'nilai_baca_alquran' => 'required|numeric',
             'nilai_wawancara'=>'required|numeric',
             'nilai_tulis_arab' => 'required|numeric',
             'kamar' => 'required'
         ];
+
+        if(in_array($this->method(),['PUT','PATCH'])){
+            unset($rules['pendaftaran_id']);
+        }
+
+        return $rules;
     }
 }

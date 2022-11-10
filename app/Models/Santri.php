@@ -9,4 +9,10 @@ class Santri extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+
+    public function jenjang()
+    {
+        return $this->belongsTo(Pendidikan::class,'jenjang_pendidikan_id');
+    }
 }

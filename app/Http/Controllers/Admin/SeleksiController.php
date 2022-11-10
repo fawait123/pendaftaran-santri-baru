@@ -119,7 +119,11 @@ class SeleksiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $check = Seleksi::find($id);
+        if($check){
+            return redirect()->route('admin.seleksi.index')->with(['message' =>'Data berhasil dihapus']);
+        }
+        return redirect()->route('admin.seleksi.index')->with(['message' =>'Oppps error']);
     }
 
     public function IDSeleksi()
@@ -128,5 +132,15 @@ class SeleksiController extends Controller
         $count++;
         $no_urut = 'SN-'.date('YmdHis').$count;
         return $no_urut;
+    }
+
+    public function detail($id)
+    {
+        $seleksi = Seleksi::with('pendaftaran.santri')->where('id',$id)->first();
+        if($seleksi){
+            return view('pages.admin.seleksi.detail',compact('seleksi'));
+        }
+
+        return abort(404);
     }
 }
