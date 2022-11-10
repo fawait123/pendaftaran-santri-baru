@@ -4,6 +4,7 @@ use App\Http\Controllers\FormulirController;
 use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\Admin\DataPendaftarController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\SeleksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,5 +53,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/edit/{id}', [SeleksiController::class, 'edit'])->name('admin.seleksi.edit');
         Route::put('/{id}', [SeleksiController::class, 'update'])->name('admin.seleksi.update');
         Route::delete('/{id}', [SeleksiController::class, 'destroy'])->name('admin.seleksi.destroy');
+    });
+    Route::group(['prefix' => 'laporan'],function () {
+        Route::get('santri', [LaporanController::class, 'santri'])->name('admin.laporan.santri');
+        Route::get('seleksi', [LaporanController::class, 'seleksi'])->name('admin.laporan.seleksi');
+        Route::post('download', [LaporanController::class, 'download'])->name('admin.laporan.download');
     });
 });

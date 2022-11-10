@@ -2,7 +2,7 @@
     <div>
         <div class="row justify-content-end mb-3">
             <div class="col-xl-4  text-end">
-                <a href="{{ route('admin.pendaftar.create') }}" class="btn btn-primary btn-rounded">Tambah</a>
+                <a href="{{ route('admin.seleksi.create') }}" class="btn btn-primary btn-rounded">Tambah</a>
             </div>
             <div class="col-xl-4">
                 <input wire:model="search" type="text" class="form-control" style="border-radius: 20px"
@@ -18,6 +18,7 @@
                 <th>Baca Alquran</th>
                 <th>Tulis Arab</th>
                 <th>Wawancara</th>
+                <th>Total</th>
                 <th class="text-center">Aksi</th>
             </tr>
         </thead>
@@ -25,19 +26,21 @@
             @if (count($data) > 0)
                 @foreach ($data as $item)
                     <tr wire:key="user-{{ $item->id }}">
-                        <td>{{ $item->id_seleksi }}</td>
-                        <td>{{ $item->santri->nama_lengkap }}</td>
-                        <td>{{ $item->santri->email }}</td>
-                        <td><span class="badge badge-light-success"><i data-feather="check"></i>Done</span></td>
+                        <td>{{ $item->no_seleksi }}</td>
+                        <td>{{ $item->pendaftaran->santri->nama_lengkap }}</td>
+                        <td>{{ $item->nilai_baca_alquran }}</td>
+                        <td>{{ $item->nilai_tulis_arab }}</td>
+                        <td>{{ $item->nilai_wawancara }}</td>
+                        <td>{{ $item->total_penilaian }}</td>
                         <td class="text-center">
-                            <a href="{{ route('admin.pendaftar.detail', $item->id) }}" class="text-primary"><i
+                            <a href="{{ route('admin.seleksi.detail', $item->id) }}" class="text-primary"><i
                                     style="font-size: 19px" class="icofont icofont-open-eye"></i></a>
-                            <a href="{{ route('admin.pendaftar.edit', $item->id) }}" class="text-warning"><i
+                            <a href="{{ route('admin.seleksi.edit', $item->id) }}" class="text-warning"><i
                                     style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
-                            <a href="{{ route('admin.pendaftar.destroy', $item->id) }}"
+                            <a href="{{ route('admin.seleksi.destroy', $item->id) }}"
                                 onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>
-                            <form action="{{ route('admin.pendaftar.destroy', $item->id) }}" method="post"
+                            <form action="{{ route('admin.seleksi.destroy', $item->id) }}" method="post"
                                 id="delete-form{{ $item->id }}">
                                 @method('delete')
                                 @csrf
