@@ -23,6 +23,10 @@
     <li class="sidebar-list"><a
             class="sidebar-link sidebar-title link-nav {{ Request::is('admin/seleksi*') ? 'active-menu' : '' }}"
             href="{{ route('admin.seleksi.index') }}"><i data-feather="crop"></i><span>Data Seleksi</span></a></li>
+    <li class="sidebar-list"><a
+            class="sidebar-link sidebar-title link-nav {{ Request::is('admin/informasi*') ? 'active-menu' : '' }}"
+            href="{{ route('admin.informasi.index') }}"><i data-feather="info"></i><span>Kelola Informasi</span></a>
+    </li>
     <li class="sidebar-main-title">
         <div>
             <p class="lan-2">Laporan</p>

@@ -4,9 +4,11 @@ use App\Http\Controllers\FormulirController;
 use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DataPendaftarController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\SeleksiController;
+use App\Http\Controllers\Admin\InformasiController as AdminInformasiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
@@ -35,6 +37,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('formulir',[FormulirController::class,'index'])->name('formulir.index');
+Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
 Route::post('formulir',[FormulirController::class,'store'])->name('formulir.store');
 Route::get('formulir/cetak',[FormulirController::class,'cetak'])->name('formulir.cetak');
 Route::get('formulir/download/{id}',[FormulirController::class,'download'])->name('formulir.download');
@@ -72,5 +75,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('santri', [LaporanController::class, 'santri'])->name('admin.laporan.santri');
         Route::get('seleksi', [LaporanController::class, 'seleksi'])->name('admin.laporan.seleksi');
         Route::post('download', [LaporanController::class, 'download'])->name('admin.laporan.download');
+    });
+    Route::group(['prefix' => 'informasi'],function () {
+        Route::get('/', [AdminInformasiController::class, 'index'])->name('admin.informasi.index');
+        Route::get('create/', [AdminInformasiController::class, 'create'])->name('admin.informasi.create');
+        Route::post('store/', [AdminInformasiController::class, 'store'])->name('admin.informasi.store');
+        Route::get('/{id}', [AdminInformasiController::class, 'detail'])->name('admin.informasi.detail');
+        Route::get('/edit/{id}', [AdminInformasiController::class, 'edit'])->name('admin.informasi.edit');
+        Route::put('/{id}', [AdminInformasiController::class, 'update'])->name('admin.informasi.update');
+        Route::delete('/{id}', [AdminInformasiController::class, 'destroy'])->name('admin.informasi.destroy');
     });
 });
