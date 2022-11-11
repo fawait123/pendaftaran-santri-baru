@@ -8,6 +8,7 @@ use App\Models\Pendidikan;
 use App\Models\Santri;
 use Exception;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Throwable;
 
 class FormulirController extends Controller
@@ -104,5 +105,12 @@ class FormulirController extends Controller
         $pendaftaran = Pendaftaran::with('santri')->where('user_id',auth()->user()->id)->first();
         // return $pendaftaran;
         return view('pages.formulir.cetak',compact('pendaftaran'));
+    }
+
+    public function download($id)
+    {
+        $pendaftaran = Pendaftaran::with('santri')->find($id);
+        $pdf = Pdf::loadView('pdf.cetak',compact('pendaftaran'));
+        return $pdf->download('data-pendaftar.pdf');
     }
 }
