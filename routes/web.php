@@ -3,6 +3,7 @@
 use App\Http\Controllers\FormulirController;
 use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\Admin\DataPendaftarController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\SeleksiController;
@@ -38,6 +39,10 @@ Route::post('formulir',[FormulirController::class,'store'])->name('formulir.stor
 Route::get('formulir/cetak',[FormulirController::class,'cetak'])->name('formulir.cetak');
 Route::get('penerimaan',[PenerimaanController::class,'index'])->name('penerimaan.index');
 Route::get('informasi',[InformasiController::class,'index'])->name('informasi.index');
+Route::get('notifikasi',[NotifikasiController::class,'index'])->name('notifikasi.index');
+Route::get('notifikasi/read/all',[NotifikasiController::class,'readAll'])->name('notifikasi.readAll');
+Route::get('notifikasi/read/{id}',[NotifikasiController::class,'read'])->name('notifikasi.read');
+Route::delete('notifikasi/destroy/{id}',[NotifikasiController::class,'destroy'])->name('notifikasi.destroy');
 
 
 // admin
