@@ -37,6 +37,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('formulir',[FormulirController::class,'index'])->name('formulir.index');
 Route::post('formulir',[FormulirController::class,'store'])->name('formulir.store');
 Route::get('formulir/cetak',[FormulirController::class,'cetak'])->name('formulir.cetak');
+Route::get('formulir/download/{id}',[FormulirController::class,'download'])->name('formulir.download');
 Route::get('penerimaan',[PenerimaanController::class,'index'])->name('penerimaan.index');
 Route::get('informasi',[InformasiController::class,'index'])->name('informasi.index');
 Route::get('notifikasi',[NotifikasiController::class,'index'])->name('notifikasi.index');

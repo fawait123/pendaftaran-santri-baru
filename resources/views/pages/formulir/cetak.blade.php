@@ -136,7 +136,7 @@
                                 <p style="width: 200px">Pekerjaan Wali</p>
                                 <p>: {{ $pendaftaran->santri->pekerjaan_ayah }}</p>
                             </div>
-                            <div style="display: flex">
+                            <div style="display: flex; margin-bottom:20px;">
                                 <p style="width: 200px">Alamat</p>
                                 <p>: {{ $pendaftaran->santri->alamat }}</p>
                             </div>
@@ -144,7 +144,8 @@
                                 <p style="width: 200px">Agama</p>
                                 <p>: Achmad Fawait</p>
                             </div> --}}
-                            <button class="btn btn-primary btn-rounded">Cetak</button>
+                            <a href="{{ route('formulir.download', $pendaftaran->id) }}"
+                                class="btn btn-primary btn-rounded">Cetak</a>
                         </div>
                     </div>
                 </div>
