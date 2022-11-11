@@ -29,7 +29,7 @@ class SeleksiRequest extends FormRequest
             'nilai_wawancara'=>'required|numeric',
             'nilai_tulis_arab' => 'required|numeric',
             'kamar' => 'required',
-            'kamar' => 'required',
+            'kelas' => 'required',
             'status' => 'required',
         ];
 

@@ -134,9 +134,37 @@
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label class="form-label" for="kelas">Kelas</label>
-                                                <input class="form-control @error('kelas') is-invalid @enderror"
-                                                    id="kelas" type="text" value="{{ $check->kelas }}"
-                                                    placeholder="Kelas" name="kelas">
+                                                <select name="kelas" id="kelas"
+                                                    class="form-control @error('kelas') is-invalid @enderror">
+                                                    <option value="">-- pilih --</option>
+                                                    <option value="Awaliyah Tsalist"
+                                                        {{ $check->kelas == 'Awaliyah Tsalist' ? 'selected' : '' }}>
+                                                        Awaliyah Tsalist
+                                                    </option>
+                                                    <option value="Awaliyah Robi"
+                                                        {{ $check->kelas == 'Awaliyah Robi' ? 'selected' : '' }}>
+                                                        Awaliyah Robi
+                                                    </option>
+                                                    <option value="Wustho Wahid"
+                                                        {{ $check->kelas == 'Wustho Wahid' ? 'selected' : '' }}>
+                                                        Wustho Wahid
+                                                    </option>
+                                                    <option value="Wustho Tsani"
+                                                        {{ $check->kelas == 'Wustho Tsani' ? 'selected' : '' }}>
+                                                        Wustho Tsani
+                                                    </option>
+                                                    <option value="Wustho Tsalist"
+                                                        {{ $check->kelas == 'Wustho Tsalist' ? 'selected' : '' }}>
+                                                        Wustho Tsalist
+                                                    </option>
+                                                    <option value="Ulya Wahid"
+                                                        {{ $check->kelas == 'Ulya Wahid' ? 'selected' : '' }}>
+                                                        Ulya Wahid
+                                                    </option>
+                                                    <option value="Ulya Tsani"
+                                                        {{ $check->kelas == 'Ulya Tsani' ? 'selected' : '' }}>
+                                                        Ulya Tsani</option>
+                                                </select>
                                                 @error('kelas')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}

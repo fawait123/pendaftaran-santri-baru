@@ -119,9 +119,37 @@
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label class="form-label" for="kelas">Kelas</label>
-                                                <input class="form-control @error('kelas') is-invalid @enderror"
-                                                    id="kelas" type="text" value="{{ old('kelas') }}"
-                                                    placeholder="Kelas" name="kelas">
+                                                <select name="kelas" id="kelas"
+                                                    class="form-control @error('kelas') is-invalid @enderror">
+                                                    <option value="">-- pilih --</option>
+                                                    <option value="Awaliyah Tsalist"
+                                                        {{ old('kelas') == 'Awaliyah Tsalist' ? 'selected' : '' }}>
+                                                        Awaliyah Tsalist
+                                                    </option>
+                                                    <option value="Awaliyah Robi"
+                                                        {{ old('kelas') == 'Awaliyah Robi' ? 'selected' : '' }}>
+                                                        Awaliyah Robi
+                                                    </option>
+                                                    <option value="Wustho Wahid"
+                                                        {{ old('kelas') == 'Wustho Wahid' ? 'selected' : '' }}>
+                                                        Wustho Wahid
+                                                    </option>
+                                                    <option value="Wustho Tsani"
+                                                        {{ old('kelas') == 'Wustho Tsani' ? 'selected' : '' }}>
+                                                        Wustho Tsani
+                                                    </option>
+                                                    <option value="Wustho Tsalist"
+                                                        {{ old('kelas') == 'Wustho Tsalist' ? 'selected' : '' }}>
+                                                        Wustho Tsalist
+                                                    </option>
+                                                    <option value="Ulya Wahid"
+                                                        {{ old('kelas') == 'Ulya Wahid' ? 'selected' : '' }}>
+                                                        Ulya Wahid
+                                                    </option>
+                                                    <option value="Ulya Tsani"
+                                                        {{ old('kelas') == 'Ulya Tsani' ? 'selected' : '' }}>
+                                                        Ulya Tsani</option>
+                                                </select>
                                                 @error('kelas')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}

@@ -23,12 +23,20 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'nama_lengkap' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'username' => 'required|string|unique:users',
+            'username' => 'required|string|unique:users,username',
             'no_hp' => 'required|string|min:10',
         ];
+
+        if(in_array($this->method(),['PUT','PATCH'])){
+            $rules['email'] = 'required|string|email|max:255|unique:users,email,'.$this->id;
+            $rules['username'] = 'required|string|unique:users,username,'.$this->id;
+            unset($rules['password']);
+        }
+
+        return $rules;
     }
 }
