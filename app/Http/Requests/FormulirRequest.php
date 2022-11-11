@@ -41,6 +41,7 @@ class FormulirRequest extends FormRequest
               "email" => "required",
               "nik_ayah" => "required",
               "nama_ayah" => "required",
+              "thn_daftar" => "required",
               "pekerjaan_ayah" => "required",
               "nik_ibu" => "required",
               "nama_ibu" => "required",

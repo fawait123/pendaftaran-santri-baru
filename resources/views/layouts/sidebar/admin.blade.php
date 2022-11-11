@@ -26,6 +26,9 @@
     <li class="sidebar-list"><a
             class="sidebar-link sidebar-title link-nav {{ Request::is('admin/informasi*') ? 'active-menu' : '' }}"
             href="{{ route('admin.informasi.index') }}"><i data-feather="info"></i><span>Kelola Informasi</span></a>
+    <li class="sidebar-list"><a
+            class="sidebar-link sidebar-title link-nav {{ Request::is('admin/pengguna*') ? 'active-menu' : '' }}"
+            href="{{ route('admin.user.index') }}"><i data-feather="users"></i><span>Kelola Pengguna</span></a>
     </li>
     <li class="sidebar-main-title">
         <div>

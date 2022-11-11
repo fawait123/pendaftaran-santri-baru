@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DataPendaftarController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\SeleksiController;
 use App\Http\Controllers\Admin\InformasiController as AdminInformasiController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
@@ -84,5 +85,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/edit/{id}', [AdminInformasiController::class, 'edit'])->name('admin.informasi.edit');
         Route::put('/{id}', [AdminInformasiController::class, 'update'])->name('admin.informasi.update');
         Route::delete('/{id}', [AdminInformasiController::class, 'destroy'])->name('admin.informasi.destroy');
+    });
+    Route::group(['prefix' => 'pengguna'],function () {
+        Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.index');
+        Route::get('create/', [AdminUserController::class, 'create'])->name('admin.user.create');
+        Route::post('store/', [AdminUserController::class, 'store'])->name('admin.user.store');
+        Route::get('/{id}', [AdminUserController::class, 'detail'])->name('admin.user.detail');
+        Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/{id}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
     });
 });

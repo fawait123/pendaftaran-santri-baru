@@ -388,6 +388,19 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="thn_daftar">Tahun Daftar</label>
+                                        <input class="form-control @error('thn_daftar') is-invalid @enderror"
+                                            id="thn_daftar" type="text" value="{{ $pendaftaran->thn_daftar }}"
+                                            placeholder="Tahun Daftar" name="thn_daftar">
+                                        @error('thn_daftar')
+                                            <span class="invalid-feedback" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-end">
