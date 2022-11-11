@@ -37,9 +37,21 @@
                             </div>
                             <div style="display: flex;justify-content: center;">
                                 <div style="width: 300px;padding:20px;margin-top:20px; text-align:center;">
-                                    <span style="font-size: 20px;text-align: center">SELAMAT ANDA DITERIMA MENJADI SANTRI
-                                        DI PONDOK PESANTREN
-                                        DARUNJANNAH</span>
+                                    @if (count($pendaftaran->seleksi) > 0)
+                                        @if ($pendaftaran->seleksi[0]->status == 'lulus')
+                                            <span style="font-size: 20px;text-align: center">SELAMAT ANDA DITERIMA MENJADI
+                                                SANTRI
+                                                DI PONDOK PESANTREN
+                                                DARUNJANNAH</span>
+                                        @else
+                                            <span style="font-size: 20px;text-align: center">MAAF ANDA TIDAK DITERIMA
+                                                MENJADI SANTRI DI PONDOK PESANTREN DARUNJANNAH, SILAHKAN COBA LAGI
+                                                NANTI</span>
+                                        @endif
+                                    @else
+                                        <span style="font-size: 20px;text-align: center">BELUM ADA PENGUMUMAN SELEKSI,
+                                            SILAHKAN DI CEK LAGI NANTI</span>
+                                    @endif
                                 </div>
                             </div>
                             <button class="btn btn-primary">Lihat Hasil Seleksi</button>

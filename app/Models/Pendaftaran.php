@@ -14,4 +14,9 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(Santri::class,'santri_id');
     }
+
+    public function seleksi()
+    {
+        return $this->hasMany(Seleksi::class,'pendaftaran_id');
+    }
 }

@@ -1,7 +1,14 @@
 @php
     use App\Models\Notifkasi;
 
-    $notifications = Notifkasi::where('user_id', auth()->user()->id)->get();
+    $notifications = Notifkasi::where('user_id', auth()->user()->id)
+        ->where('is_read', false)
+        ->limit(5)
+        ->orderBy('id', 'DESC')
+        ->get();
+    $count = Notifkasi::where('user_id', auth()->user()->id)
+        ->where('is_read', false)
+        ->count();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -111,7 +118,7 @@
                     <ul class="nav-menus">
                         <li class="onhover-dropdown">
                             <div class="notification-box"><i data-feather="bell"> </i><span
-                                    class="badge rounded-pill badge-secondary">{{ count($notifications) }}</span>
+                                    class="badge rounded-pill badge-secondary">{{ $count }}</span>
                             </div>
                             <div class="onhover-show-div notification-dropdown">
                                 <h6 class="f-18 mb-0 dropdown-title">Notitications </h6>
@@ -124,10 +131,11 @@
                                                 </p>
                                             </li>
                                         @endforeach
-                                        <li><a class="f-w-700" href="#">Check all</a></li>
                                     @else
                                         <li class="b-l-primary border-4 disabled-link">Tidak Ada notifikasi</li>
                                     @endif
+                                    <li><a class="f-w-700" href="{{ route('notifikasi.index') }}">Check all</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
