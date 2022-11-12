@@ -81,53 +81,55 @@
     <!-- Container-fluid Ends-->
     {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vertically
         centered</button> --}}
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Hasil Seleksi</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div style="display: flex">
-                        <p style="width: 200px">ID Seleksi</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->no_seleksi }}</p>
+    @if (count($pendaftaran->seleksi) > 0)
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Hasil Seleksi</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Nilai Baca Alquran</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->nilai_baca_alquran }}</p>
+                    <div class="modal-body">
+                        <div style="display: flex">
+                            <p style="width: 200px">ID Seleksi</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->no_seleksi }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Nilai Baca Alquran</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->nilai_baca_alquran }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Nilai Wawancara</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->nilai_wawancara }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Nilai Tulis Arab</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->nilai_tulis_arab }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Kamar</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->kamar }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Status</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->status }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Kelas</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->kelas }}</p>
+                        </div>
+                        <div style="display: flex">
+                            <p style="width: 200px">Keterangan</p>
+                            <p>: {{ $pendaftaran->seleksi[0]->keterangan != null ? $pendaftaran->seleksi[0]->keterangan : 'Tidak Ada Keterangan' }}
+                            </p>
+                        </div>
                     </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Nilai Wawancara</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->nilai_wawancara }}</p>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
                     </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Nilai Tulis Arab</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->nilai_tulis_arab }}</p>
-                    </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Kamar</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->kamar }}</p>
-                    </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Status</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->status }}</p>
-                    </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Kelas</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->kelas }}</p>
-                    </div>
-                    <div style="display: flex">
-                        <p style="width: 200px">Keterangan</p>
-                        <p>: {{ $pendaftaran->seleksi[0]->keterangan != null ? $pendaftaran->seleksi[0]->keterangan : 'Tidak Ada Keterangan' }}
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection
