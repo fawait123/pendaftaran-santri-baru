@@ -1,5 +1,7 @@
 @php
     use App\Models\Notifkasi;
+    $uri = Request::path();
+    $uri = explode('/', $uri);
 
     $notifications = Notifkasi::where('user_id', auth()->user()->id)
         ->where('is_read', false)
@@ -24,7 +26,10 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('assets') }}/images/logo/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets') }}/images/logo/logo.png type="image/x-icon">
-    <title>Cuba - Premium Admin Template</title>
+    <title>DARUNNAJAH - @for ($i = 0; $i < count($uri); $i++)
+            {{ $uri[$i] . ' ' }}
+        @endfor
+    </title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
         rel="stylesheet">
@@ -140,8 +145,9 @@
                             </div>
                         </li>
                         <li class="profile-nav onhover-dropdown p-0 me-0">
-                            <div class="media profile-media"><img class="b-r-10"
-                                    src="{{ asset('assets') }}/images/dashboard/profile.jpg" alt="">
+                            <div class="media profile-media"><img class="b-r-10" width="70"
+                                    src="{{ auth()->user()->foto == null ? asset('assets/images/dashboard/profile.jpg') : auth()->user()->foto }}"
+                                    alt="">
                                 <div class="media-body"><span>{{ auth()->user()->nama_lengkap }}</span>
                                     <p class="mb-0 font-roboto">{{ auth()->user()->role }} <i
                                             class="middle fa fa-angle-down"></i></p>
@@ -217,8 +223,10 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html"> <i data-feather="home"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item">Dashboard</li>
-                                    <li class="breadcrumb-item active">Default </li>
+                                    @for ($i = 0; $i < count($uri); $i++)
+                                        <li class="breadcrumb-item {{ count($uri) - 1 == $i ? 'active' : '' }}">
+                                            {{ $uri[$i] }}</li>
+                                    @endfor
                                 </ol>
                             </div>
                         </div>
