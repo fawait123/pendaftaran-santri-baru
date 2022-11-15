@@ -104,7 +104,7 @@
                     processData: false,
                     data: formData,
                     success: function(res) {
-                        console.log(res)
+                        window.location.reload();
                     }
                 });
             })
