@@ -52,7 +52,7 @@ Route::delete('notifikasi/destroy/{id}',[NotifikasiController::class,'destroy'])
 
 
 // admin
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'role:admin'], function () {
     Route::group(['prefix' => 'pendaftaran'],function () {
         Route::get('/', [DataPendaftarController::class, 'index'])->name('admin.pendaftar.index');
         Route::get('/verifikasi', [DataPendaftarController::class, 'verifikasiAll'])->name('admin.pendaftar.verifikasi.all');
