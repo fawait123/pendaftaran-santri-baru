@@ -6,10 +6,19 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card hovercard text-center">
-                        <div class="cardheader"></div>
+                        <div class="cardheader"
+                            style="background-image: url({{ $profile->foto == null ? asset('assets/images/user/7.jpg') : $profile->foto }})">
+                        </div>
                         <div class="user-image">
-                            <div class="avatar"><img alt="" src="../assets/images/user/7.jpg"></div>
-                            <div class="icon-wrapper"><i class="icofont icofont-pencil-alt-5"></i></div>
+                            <div class="avatar"><img alt=""
+                                    src="{{ $profile->foto == null ? asset('assets/images/user/7.jpg') : $profile->foto }}">
+                            </div>
+                            <div class="icon-wrapper"><i class="icofont icofont-pencil-alt-5"
+                                    onclick="document.getElementById('form-upload-file').click()"></i></div>
+                            <form action="" enctype="multipart/form-data" id="form-upload">
+                                @csrf
+                                <input type="file" name="file" hidden id="form-upload-file">
+                            </form>
                         </div>
                         <div class="info">
                             <div class="row">
@@ -82,3 +91,23 @@
         </div>
     </div>
 @endsection
+
+@push('customjs')
+    <script>
+        $(document).ready(function() {
+            $("#form-upload-file").on('change', function() {
+                let formData = new FormData($("#form-upload")[0]);
+                $.ajax({
+                    url: "{{ route('profile.upload') }}",
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function(res) {
+                        console.log(res)
+                    }
+                });
+            })
+        })
+    </script>
+@endpush
