@@ -58,10 +58,10 @@ class SeleksiController extends Controller
             'status' =>$request->status
         ]);
         $pendaftaran = Pendaftaran::find($request->pendaftaran_id);
-
+        $status = $request->status=='lulus'?'LULUS':'TIDAK LULUS';
         Notifkasi::create([
             'user_id' => $pendaftaran->user_id,
-            'notification'=>'Selamat anda '. $request->status=='lulus'?'LULUS':'TIDAK LULUS' .' tes Seleksi'
+            'notification'=>'Selamat Anda '. $status .' Tes Seleksi'
         ]);
 
         return redirect()->route('admin.seleksi.index')->with(['message' =>'Berhasil menambah data seleksi']);
