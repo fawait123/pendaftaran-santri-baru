@@ -78,32 +78,6 @@
                 <p style="width:200px;display:inline-block;">Pekerjaan Ibu</p>
                 <p style="display:inline-block;">: {{ $pendaftaran->santri->pekerjaan_ibu }}</p>
             </div>
-            <div style="display: flex">
-                <p style="width:200px;display:inline-block;">Alamat</p>
-                <p>: Achmad Fawait</p>
-            </div>
-            <div style="display: flex;">
-                <p style="width:200px;display:inline-block;">Agama</p>
-                <p style="display:inline-block;">: {{ $pendaftaran->santri->alamat }}</p>
-            </div>
-            <span class="text-secondary" style="font-weight: bold">Profile Data Wali
-                Tua</span>
-            <div style="display: flex; margin-top:20px;">
-                <p style="width:200px;display:inline-block;">Nama Wali</p>
-                <p style="display:inline-block;">: {{ $pendaftaran->santri->nama_ayah }}</p>
-            </div>
-            <div style="display: flex">
-                <p style="width:200px;display:inline-block;">No. Telp / HP</p>
-                <p style="display:inline-block;">: {{ $pendaftaran->santri->no_hp }}</p>
-            </div>
-            <div style="display: flex">
-                <p style="width:200px;display:inline-block;">Pekerjaan Wali</p>
-                <p style="display:inline-block;">: {{ $pendaftaran->santri->pekerjaan_ayah }}</p>
-            </div>
-            <div style="display: flex">
-                <p style="width:200px;display:inline-block;">Alamat</p>
-                <p style="display:inline-block;">: {{ $pendaftaran->santri->alamat }}</p>
-            </div>
         </div>
     </div>
 

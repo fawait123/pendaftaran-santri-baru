@@ -14,7 +14,8 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="media"><img class="img-thumbnail rounded-circle me-3"
-                                                src="../assets/images/user/7.jpg" alt="Generic placeholder image">
+                                                src="{{ auth()->user()->foto == null ? asset('assets/images/user/7.jpg') : auth()->user()->foto }}"
+                                                alt="Generic placeholder image">
                                             <div class="media-body align-self-center">
                                                 <h5 class="mt-0 user-name">{{ auth()->user()->nama_lengkap }}</h5>
                                             </div>
@@ -59,26 +60,10 @@
                                     <p style="width: 200px">Alamat Lengkap</p>
                                     <p>: {{ $pendaftaran->santri->alamat }}</p>
                                 </div>
-                                {{-- <div style="display: flex">
-                                <p style="width: 200px">Agama</p>
-                                <p>: Islam</p>
-                            </div> --}}
                                 <div style="display: flex">
                                     <p style="width: 200px">Asal Sekolah</p>
                                     <p>: {{ $pendaftaran->santri->asal_sekolah }}</p>
                                 </div>
-                                {{-- <div style="display: flex">
-                                <p style="width: 200px">Alamat Sekolah</p>
-                                <p>: Achmad Fawait</p>
-                            </div> --}}
-                                {{-- <div style="display: flex">
-                                <p style="width: 200px">Tahun Lulus</p>
-                                <p>: Achmad Fawait</p>
-                            </div> --}}
-                                {{-- <div style="display: flex">
-                                <p style="width: 200px">No. Ijazah</p>
-                                <p>: Achmad Fawait</p>
-                            </div> --}}
                                 <div style="display: flex">
                                     <p style="width: 200px">No. Telp / HP</p>
                                     <p>: {{ $pendaftaran->santri->no_hp }}</p>
@@ -87,14 +72,6 @@
                                     <p style="width: 200px">Email</p>
                                     <p>: {{ $pendaftaran->santri->email }}</p>
                                 </div>
-                                {{-- <div style="display: flex">
-                                <p style="width: 200px">Pendidikan Jurusan</p>
-                                <p>: Achmad Fawait</p>
-                            </div> --}}
-                                {{-- <div style="display: flex; margin-bottom:40px">
-                                <p style="width: 200px">Nilai UN</p>
-                                <p>: Achmad Fawait</p>
-                            </div> --}}
                                 <span class="text-secondary" style="font-weight: bold">Profile Data Orang
                                     Tua</span>
                                 <div style="display: flex">
@@ -118,24 +95,6 @@
                                     <p>: {{ $pendaftaran->santri->pekerjaan_ibu }}</p>
                                 </div>
                                 <div style="display: flex">
-                                    <p style="width: 200px">Alamat</p>
-                                    <p>: {{ $pendaftaran->santri->alamat }}</p>
-                                </div>
-                                <span class="text-secondary" style="font-weight: bold">Profile Data Wali
-                                    Tua</span>
-                                <div style="display: flex">
-                                    <p style="width: 200px">Nama Wali</p>
-                                    <p>: {{ $pendaftaran->santri->nama_ayah }}</p>
-                                </div>
-                                <div style="display: flex">
-                                    <p style="width: 200px">No. Telp / HP</p>
-                                    <p>: {{ $pendaftaran->santri->no_hp }}</p>
-                                </div>
-                                <div style="display: flex">
-                                    <p style="width: 200px">Pekerjaan Wali</p>
-                                    <p>: {{ $pendaftaran->santri->pekerjaan_ayah }}</p>
-                                </div>
-                                <div style="display: flex; margin-bottom:20px;">
                                     <p style="width: 200px">Alamat</p>
                                     <p>: {{ $pendaftaran->santri->alamat }}</p>
                                 </div>

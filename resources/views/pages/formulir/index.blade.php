@@ -456,7 +456,8 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="media"><img class="img-thumbnail rounded-circle me-3"
-                                                src="../assets/images/user/7.jpg" alt="Generic placeholder image">
+                                                src="{{ auth()->user()->foto == null ? asset('assets/images/user/7.jpg') : auth()->user()->foto }}"
+                                                alt="Generic placeholder image">
                                             <div class="media-body align-self-center">
                                                 <h5 class="mt-0 user-name">{{ auth()->user()->nama_lengkap }}</h5>
                                             </div>
