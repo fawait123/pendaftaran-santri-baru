@@ -480,19 +480,6 @@
                                 </ol>
                                 <p>Informasi tes akan dilaksanakan secara offline atau di pondok untuk informasinya silahkan
                                     cek dan pantau di menu informasi yang ada di aplikasi</p>
-
-                                <div class="like-comment mt-4">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item border-right pe-3">
-                                            <label class="m-0"><a href="#"><i class="fa fa-heart"></i></a>
-                                                Dashboard</label><span class="ms-2 counter">2659</span>
-                                        </li>
-                                        <li class="list-inline-item ms-2">
-                                            <label class="m-0"><a href="#"><i class="fa fa-comment"></i></a>
-                                                Data Santri</label><span class="ms-2 counter">569</span>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>

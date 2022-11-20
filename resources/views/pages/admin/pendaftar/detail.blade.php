@@ -91,24 +91,6 @@
                                 <p style="width: 200px">Pekerjaan Ibu</p>
                                 <p>: {{ $pendaftaran->santri->pekerjaan_ibu }}</p>
                             </div>
-                            <span class="text-secondary" style="font-weight: bold">Profile Data Wali
-                                Tua</span>
-                            <div style="display: flex">
-                                <p style="width: 200px">Nama Wali</p>
-                                <p>: {{ $pendaftaran->santri->nama_ayah }}</p>
-                            </div>
-                            <div style="display: flex">
-                                <p style="width: 200px">No. Telp / HP</p>
-                                <p>: {{ $pendaftaran->santri->no_hp }}</p>
-                            </div>
-                            <div style="display: flex">
-                                <p style="width: 200px">Pekerjaan Wali</p>
-                                <p>: {{ $pendaftaran->santri->pekerjaan_ayah }}</p>
-                            </div>
-                            <div style="display: flex;margin-bottom:20px">
-                                <p style="width: 200px">Alamat</p>
-                                <p>: {{ $pendaftaran->santri->alamat }}</p>
-                            </div>
                             <span class="text-secondary" style="font-weight: bold">Berkas
                                 <div class="card-body">
                                     <div class="row my-gallery gallery" id="aniimated-thumbnials" itemscope="">
