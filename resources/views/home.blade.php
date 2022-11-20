@@ -42,7 +42,7 @@
                                         <a href="{{ route('formulir.index') }}">
                                             <div class="media-body">
                                                 <div class="right-chart-content">
-                                                    <h4>1001</h4><span>Lengkapi Formulir</span>
+                                                    <span>Lengkapi Formulir</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -58,7 +58,7 @@
                                         <a href="{{ route('formulir.cetak') }}">
                                             <div class="media-body">
                                                 <div class="right-chart-content">
-                                                    <h4>1005</h4><span>Cetak Formulir</span>
+                                                    <span>Cetak Formulir</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -74,7 +74,7 @@
                                         <a href="{{ route('penerimaan.index') }}">
                                             <div class="media-body">
                                                 <div class="right-chart-content">
-                                                    <h4>100</h4><span>Penerimaan</span>
+                                                    <span>Penerimaan</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -90,7 +90,7 @@
                                         <a href="{{ route('informasi.index') }}">
                                             <div class="media-body">
                                                 <div class="right-chart-content">
-                                                    <h4>101</h4><span>Informasi</span>
+                                                    <span>Informasi</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -110,11 +110,6 @@
                                     <h4>{{ $total_santri }}<span class="new-box">Info</span></h4><span>Total Pendatar Santri
                                         Baru</span>
                                 </div>
-                                <div class="knob-block text-center">
-                                    <input class="knob1" data-width="10" data-height="70" data-thickness=".3"
-                                        data-angleoffset="0" data-linecap="round" data-fgcolor="#7366ff"
-                                        data-bgcolor="#eef5fb" value="60">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -126,10 +121,6 @@
                                 <div class="media-body right-chart-content">
                                     <h4>{{ $total_seleksi }}<span class="new-box">Info</span></h4><span>Total Data
                                         Seleksi</span>
-                                </div>
-                                <div class="knob-block text-center">
-                                    <input class="knob1" data-width="50" data-height="70" data-thickness=".3"
-                                        data-fgcolor="#7366ff" data-linecap="round" data-angleoffset="0" value="60">
                                 </div>
                             </div>
                         </div>
