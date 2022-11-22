@@ -44,7 +44,7 @@ class SeleksiController extends Controller
      */
     public function store(SeleksiRequest $request)
     {
-        $total = $request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara / 3;
+        $total = ($request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara) / 3;
         Seleksi::create([
             'no_seleksi'=>$this->IDSeleksi(),
             'pendaftaran_id' => $request->pendaftaran_id,
@@ -106,7 +106,7 @@ class SeleksiController extends Controller
     {
         $check = Seleksi::find($id);
         if($check){
-            $total = $request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara / 3;
+            $total = ($request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara) / 3;
             Seleksi::where('id',$id)->update([
                 'nilai_baca_alquran' => $request->nilai_baca_alquran,
                 'nilai_wawancara'=>$request->nilai_wawancara,
