@@ -25,7 +25,7 @@
         <tbody>
             @if (count($data) > 0)
                 @foreach ($data as $item)
-                    <tr wire:key="user-{{ $item->id }}">
+                    <tr wire:key="user-{{ $item->id_user }}">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->email }}</td>
@@ -33,13 +33,13 @@
                         <td>{{ $item->no_hp }}</td>
                         <td>{{ $item->role }}</td>
                         <td class="text-center">
-                            <a title="Edit" href="{{ route('admin.user.edit', $item->id) }}" class="text-warning"><i
-                                    style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
-                            <a href="{{ route('admin.user.destroy', $item->id) }}"
-                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id }}').submit() : false"
+                            <a title="Edit" href="{{ route('admin.user.edit', $item->id_user) }}"
+                                class="text-warning"><i style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
+                            <a href="{{ route('admin.user.destroy', $item->id_user) }}"
+                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id_user }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>
-                            <form action="{{ route('admin.user.destroy', $item->id) }}" method="post"
-                                id="delete-form{{ $item->id }}">
+                            <form action="{{ route('admin.user.destroy', $item->id_user) }}" method="post"
+                                id="delete-form{{ $item->id_user }}">
                                 @method('delete')
                                 @csrf
                             </form>

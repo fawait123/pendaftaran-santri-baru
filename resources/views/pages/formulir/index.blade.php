@@ -197,8 +197,8 @@
                                             <select name="jenjang_pend" id="jenjang_pend" class="form-control">
                                                 <option value="">-- pilih --</option>
                                                 @foreach ($jenjang as $j)
-                                                    <option value="{{ $j->id }}"
-                                                        {{ old('jenjang_pend') == $j->id ? 'selected' : '' }}>
+                                                    <option value="{{ $j->id_jenjang_pendidikan }}"
+                                                        {{ old('jenjang_pend') == $j->id_jenjang_pendidikan ? 'selected' : '' }}>
                                                         {{ $j->jenjang_pend }}</option>
                                                 @endforeach
                                             </select>
@@ -380,7 +380,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    {{-- <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="thn_daftar">Tahun Daftar</label>
                                             <input class="form-control @error('thn_daftar') is-invalid @enderror"
@@ -392,7 +392,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <span class="text-secondary text-bold">Upload Persyaratan</span>
                                 <div class="row mt-3">

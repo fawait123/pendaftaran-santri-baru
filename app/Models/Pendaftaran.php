@@ -9,6 +9,10 @@ class Pendaftaran extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $table = 'pendaftaran';
+    protected $primaryKey = 'id_pendaftaran';
+
+
 
     public function santri()
     {

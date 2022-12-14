@@ -9,5 +9,7 @@ class Pendidikan extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $table = 'jenjang_pendidikans';
+    protected $table = 'jenjang_pendidikan';
+    protected $primaryKey = 'id_pendidikan';
+
 }

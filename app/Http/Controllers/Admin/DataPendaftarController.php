@@ -81,7 +81,7 @@ class DataPendaftarController extends Controller
                 'no_daftar'=>$this->getNoPendaftaran(),
                 'tgl_daftar'=>date('Y-m-d'),
                 'thn_daftar'=>date('Y'),
-                'user_id'=>auth()->user()->id
+                'user_id'=>auth()->user()->id_user
             ]);
 
             return redirect()->route('admin.pendaftar.index')->with('success','Pendaftaran Santri Baru Berhasil');

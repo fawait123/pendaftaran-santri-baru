@@ -10,6 +10,10 @@ class Seleksi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $table = 'seleksi';
+    protected $primaryKey = 'id_seleksi';
+
+
 
     public function pendaftaran()
     {
