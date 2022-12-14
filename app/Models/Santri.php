@@ -16,6 +16,6 @@ class Santri extends Model
 
     public function jenjang()
     {
-        return $this->belongsTo(Pendidikan::class,'jenjang_pendidikan_id');
+        return $this->belongsTo(Pendidikan::class,'id_jenjang_pend');
     }
 }
