@@ -26,20 +26,20 @@
         <tbody>
             @if (count($data) > 0)
                 @foreach ($data as $item)
-                    <tr wire:key="user-{{ $item->id }}">
+                    <tr wire:key="user-{{ $item->id_informasi }}">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->tgl }}</td>
                         <td>{{ $item->title }}</td>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->step }}</td>
                         <td class="text-center">
-                            <a href="{{ route('admin.informasi.edit', $item->id) }}" class="text-warning"><i
+                            <a href="{{ route('admin.informasi.edit', $item->id_informasi) }}" class="text-warning"><i
                                     style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
-                            <a href="{{ route('admin.informasi.destroy', $item->id) }}"
-                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id }}').submit() : false"
+                            <a href="{{ route('admin.informasi.destroy', $item->id_informasi) }}"
+                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id_informasi }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>
-                            <form action="{{ route('admin.informasi.destroy', $item->id) }}" method="post"
-                                id="delete-form{{ $item->id }}">
+                            <form action="{{ route('admin.informasi.destroy', $item->id_informasi) }}" method="post"
+                                id="delete-form{{ $item->id_informasi }}">
                                 @method('delete')
                                 @csrf
                             </form>

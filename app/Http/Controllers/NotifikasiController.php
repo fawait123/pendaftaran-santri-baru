@@ -8,7 +8,7 @@ class NotifikasiController extends Controller
 {
     public function index()
     {
-        $notifikasi = Notifkasi::where('user_id',auth()->user()->id)->get();
+        $notifikasi = Notifkasi::where('user_id',auth()->user()->id_user)->get();
         return view('pages.notifikasi.index',compact('notifikasi'));
     }
 
@@ -38,7 +38,7 @@ class NotifikasiController extends Controller
 
     public function readAll()
     {
-        $notifikasi = Notifkasi::where('user_id',auth()->user()->id)->get();
+        $notifikasi = Notifkasi::where('user_id',auth()->user()->id_user)->get();
         foreach($notifikasi as $item){
             Notifkasi::where('id',$item->id)->update([
                 'is_read' => true

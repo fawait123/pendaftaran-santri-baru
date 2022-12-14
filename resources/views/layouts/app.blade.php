@@ -3,12 +3,12 @@
     $uri = Request::path();
     $uri = explode('/', $uri);
 
-    $notifications = Notifkasi::where('user_id', auth()->user()->id)
+    $notifications = Notifkasi::where('user_id', auth()->user()->id_user)
         ->where('is_read', false)
         ->limit(5)
-        ->orderBy('id', 'DESC')
+        ->orderBy('id_notifikasi', 'DESC')
         ->get();
-    $count = Notifkasi::where('user_id', auth()->user()->id)
+    $count = Notifkasi::where('user_id', auth()->user()->id_user)
         ->where('is_read', false)
         ->count();
 @endphp
@@ -112,7 +112,7 @@
                     </div>
                 </form>
                 <div class="header-logo-wrapper col-auto p-0">
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid"
+                    <div class="logo-wrapper"><a href="{{ route('home') }}"><img class="img-fluid"
                                 src="{{ asset('assets') }}/images/logo/logo.png" alt=""></a></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
                             data-feather="align-center"></i></div>
@@ -188,15 +188,15 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img width="70px" class="img-fluid for-light"
-                                src="{{ asset('assets') }}/images/logo/logo.png" alt=""><img width="70px"
-                                class="img-fluid for-dark" src="{{ asset('assets') }}/images/logo/logo.png"
-                                alt=""></a>
+                    <div class="logo-wrapper"><a href="{{ route('home') }}"><img width="70px"
+                                class="img-fluid for-light" src="{{ asset('assets') }}/images/logo/logo.png"
+                                alt=""><img width="70px" class="img-fluid for-dark"
+                                src="{{ asset('assets') }}/images/logo/logo.png" alt=""></a>
                         <div class="back-btn"><i class="fa fa-angle-left"></i></div>
                         <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
                                 data-feather="grid"> </i></div>
                     </div>
-                    <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
+                    <div class="logo-icon-wrapper"><a href="{{ route('home') }}"><img class="img-fluid"
                                 src="{{ asset('assets') }}/images/logo/logo-icon.png" alt=""></a></div>
                     <nav class="sidebar-main">
                         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
@@ -215,7 +215,7 @@
             <div class="page-body">
                 <div class="container-fluid">
                     <div class="page-title">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-6">
                                 <h3>Default</h3>
                             </div>
@@ -229,7 +229,7 @@
                                     @endfor
                                 </ol>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 @yield('content')

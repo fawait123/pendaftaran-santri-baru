@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $profile = User::where('id',auth()->user()->id)->first();
+        $profile = User::where('id',auth()->user()->id_user)->first();
         return view('pages.profile.index',compact('profile'));
     }
 
@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         $foto =  $request->file('file');
        $image =  $this->convertTobase64($foto);
-       User::where('id',auth()->user()->id)->update([
+       User::where('id',auth()->user()->id_user)->update([
         'foto'=>$image
        ]);
 

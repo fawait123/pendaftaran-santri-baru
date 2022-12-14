@@ -10,4 +10,7 @@ class Notifkasi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $table = 'notifikasi';
+    protected $primaryKey = 'id_notifikasi';
+
 }

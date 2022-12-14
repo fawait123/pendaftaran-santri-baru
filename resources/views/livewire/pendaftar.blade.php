@@ -27,7 +27,7 @@
         <tbody>
             @if (count($data) > 0)
                 @foreach ($data as $item)
-                    <tr wire:key="user-{{ $item->id }}">
+                    <tr wire:key="user-{{ $item->id_pendaftaran }}">
                         <td>{{ $item->no_daftar }}</td>
                         <td>{{ $item->santri->nama_lengkap }}</td>
                         <td>{{ $item->santri->email }}</td>
@@ -41,25 +41,26 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <a title="Verifikasi" href="{{ route('admin.pendaftar.verifikasi', $item->id) }}"
-                                onclick="event.preventDefault();return confirm('Verifikasi sekarang ?') ? document.getElementById('verifikasi-form{{ $item->id }}').submit() : false"
+                            <a title="Verifikasi"
+                                href="{{ route('admin.pendaftar.verifikasi', $item->id_pendaftaran) }}"
+                                onclick="event.preventDefault();return confirm('Verifikasi sekarang ?') ? document.getElementById('verifikasi-form{{ $item->id_pendaftaran }}').submit() : false"
                                 class="text-primary {{ $item->verifikasi == true ? 'disabled-link' : '' }}"><i
                                     style="font-size: 19px" class="icofont icofont-ui-fire-wall"></i></a>
-                            <a title="Detail" href="{{ route('admin.pendaftar.detail', $item->id) }}"
+                            <a title="Detail" href="{{ route('admin.pendaftar.detail', $item->id_pendaftaran) }}"
                                 class="text-primary"><i style="font-size: 19px"
                                     class="icofont icofont-open-eye"></i></a>
-                            <a title="Edit" href="{{ route('admin.pendaftar.edit', $item->id) }}"
+                            <a title="Edit" href="{{ route('admin.pendaftar.edit', $item->id_pendaftaran) }}"
                                 class="text-warning"><i style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
-                            <a title="Hapus" href="{{ route('admin.pendaftar.destroy', $item->id) }}"
-                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id }}').submit() : false"
+                            <a title="Hapus" href="{{ route('admin.pendaftar.destroy', $item->id_pendaftaran) }}"
+                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id_pendaftaran }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>
-                            <form action="{{ route('admin.pendaftar.destroy', $item->id) }}" method="post"
-                                id="delete-form{{ $item->id }}">
+                            <form action="{{ route('admin.pendaftar.destroy', $item->id_pendaftaran) }}" method="post"
+                                id="delete-form{{ $item->id_pendaftaran }}">
                                 @method('delete')
                                 @csrf
                             </form>
-                            <form action="{{ route('admin.pendaftar.verifikasi', $item->id) }}" method="post"
-                                id="verifikasi-form{{ $item->id }}">
+                            <form action="{{ route('admin.pendaftar.verifikasi', $item->id_pendaftaran) }}"
+                                method="post" id="verifikasi-form{{ $item->id_pendaftaran }}">
                                 @csrf
                             </form>
                         </td>

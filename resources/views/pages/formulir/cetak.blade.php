@@ -98,7 +98,7 @@
                                     <p style="width: 200px">Alamat</p>
                                     <p>: {{ $pendaftaran->santri->alamat }}</p>
                                 </div>
-                                <a href="{{ route('formulir.download', $pendaftaran->id) }}"
+                                <a href="{{ route('formulir.download', $pendaftaran->id_pendaftaran) }}"
                                     class="btn btn-primary btn-rounded">Cetak</a>
                             </div>
                         </div>

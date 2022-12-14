@@ -20,7 +20,7 @@ class FormulirController extends Controller
     public function index()
     {
         $jenjang = Pendidikan::all();
-        $pendaftaran = Pendaftaran::where('user_id',auth()->user()->id)->first();
+        $pendaftaran = Pendaftaran::where('user_id',auth()->user()->id_user)->first();
         $is_true = false;
         if($pendaftaran){
             $is_true = true;
@@ -33,7 +33,7 @@ class FormulirController extends Controller
     {
         try{
             $santri = Santri::create([
-              "no_urut"=>$this->no_urut(),
+              "no_daftar"=>$this->getNoPendaftaran(),
               "nama_lengkap" => $request->nama_lengkap,
               "tempat_lahir" => $request->tempat_lahir,
               "tgl_lahir" => date('Y-m-d',strtotime($request->tgl_lahir)),
@@ -42,7 +42,7 @@ class FormulirController extends Controller
               "tinggi_badan" => $request->tinggi_badan,
               "alamat" => $request->alamat,
               "asal_sekolah" => $request->asal_sekolah,
-              "jenjang_pendidikan_id" => $request->jenjang_pend,
+              "id_jenjang_pend" => $request->jenjang_pend,
               "hobi" => $request->hobi,
               "anak_ke" => $request->anak_ke,
               "no_kk" => $request->no_kk,
@@ -62,15 +62,17 @@ class FormulirController extends Controller
             ]);
 
             Pendaftaran::create([
-                'santri_id'=>$santri->id,
+                'santri_id'=>$santri->id_santri,
                 'no_daftar'=>$this->getNoPendaftaran(),
                 'tgl_daftar'=>date('Y-m-d'),
                 'thn_daftar'=>date('Y'),
-                'user_id'=>auth()->user()->id
+                'user_id'=>auth()->user()->id_user
             ]);
 
             return redirect()->route('formulir.index')->with('success','Pendaftaran Santri Baru Berhasil');
         }catch(Exception $error){
+
+            // dd($error);
             return redirect()->route('formulir.index')->with('error',$error->getMessage());
         }
     }
@@ -102,7 +104,7 @@ class FormulirController extends Controller
 
     public function cetak()
     {
-        $pendaftaran = Pendaftaran::with('santri')->where('user_id',auth()->user()->id)->first();
+        $pendaftaran = Pendaftaran::with('santri')->where('user_id',auth()->user()->id_user)->first();
         // return $pendaftaran;
         return view('pages.formulir.cetak',compact('pendaftaran'));
     }

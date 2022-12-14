@@ -41,14 +41,14 @@ class FormulirRequest extends FormRequest
               "email" => "required",
               "nik_ayah" => "required",
               "nama_ayah" => "required",
-              "thn_daftar" => "required",
+            //   "thn_daftar" => "required",
               "pekerjaan_ayah" => "required",
               "nik_ibu" => "required",
               "nama_ibu" => "required",
               "pekerjaan_ibu" => "required",
-              "foto" => 'required|image|mimes:jpg,png|max:512',
-              "fc_kk" => 'required|image|mimes:jpg,png|max:512',
-              "fc_akta" => 'required|image|mimes:jpg,png|max:512',
+              "foto" => 'required|image|mimes:jpg,png|max:5000',
+              "fc_kk" => 'required|image|mimes:jpg,png|max:5000',
+              "fc_akta" => 'required|image|mimes:jpg,png|max:5000',
               'gol_darah'=> 'required|in:A,B,AB,O,Tidak Tahu'
         ];
     }

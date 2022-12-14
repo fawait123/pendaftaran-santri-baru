@@ -19,9 +19,9 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->no_seleksi }}</td>
-                <td>{{ $item->pendaftaran->no_daftar }}</td>
-                <td>{{ $item->pendaftaran->santri->nik }}</td>
-                <td>{{ $item->pendaftaran->santri->nama_lengkap }}</td>
+                <td>{{ $item->pendaftaran->no_daftar ?? '' }}</td>
+                <td>{{ $item->pendaftaran->santri->nik ?? '' }}</td>
+                <td>{{ $item->pendaftaran->santri->nama_lengkap ?? '' }}</td>
                 <td>{{ $item->kamar }}</td>
                 <td>{{ $item->keterangan }}</td>
                 <td>{{ $item->nilai_baca_alquran }}</td>

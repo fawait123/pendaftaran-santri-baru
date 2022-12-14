@@ -9,6 +9,9 @@ class Santri extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $table = 'santri';
+    protected $primaryKey = 'id_santri';
+
 
 
     public function jenjang()

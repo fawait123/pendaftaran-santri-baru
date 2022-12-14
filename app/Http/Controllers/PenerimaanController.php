@@ -13,7 +13,7 @@ class PenerimaanController extends Controller
     }
     public function index()
     {
-        $pendaftaran = Pendaftaran::with(['santri','seleksi'])->where('user_id',auth()->user()->id)->first();
+        $pendaftaran = Pendaftaran::with(['santri','seleksi'])->where('user_id',auth()->user()->id_user)->first();
         return view('pages.penerimaan.index',compact('pendaftaran'));
     }
 }

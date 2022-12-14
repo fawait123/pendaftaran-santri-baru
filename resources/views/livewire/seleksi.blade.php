@@ -25,23 +25,23 @@
         <tbody>
             @if (count($data) > 0)
                 @foreach ($data as $item)
-                    <tr wire:key="user-{{ $item->id }}">
+                    <tr wire:key="user-{{ $item->id_seleksi }}">
                         <td>{{ $item->no_seleksi }}</td>
-                        <td>{{ $item->pendaftaran->santri->nama_lengkap }}</td>
+                        <td>{{ $item->pendaftaran->santri->nama_lengkap ?? '' }}</td>
                         <td>{{ $item->nilai_baca_alquran }}</td>
                         <td>{{ $item->nilai_tulis_arab }}</td>
                         <td>{{ $item->nilai_wawancara }}</td>
                         <td>{{ $item->total_penilaian }}</td>
                         <td class="text-center">
-                            <a href="{{ route('admin.seleksi.detail', $item->id) }}" class="text-primary"><i
+                            <a href="{{ route('admin.seleksi.detail', $item->id_seleksi) }}" class="text-primary"><i
                                     style="font-size: 19px" class="icofont icofont-open-eye"></i></a>
-                            <a href="{{ route('admin.seleksi.edit', $item->id) }}" class="text-warning"><i
+                            <a href="{{ route('admin.seleksi.edit', $item->id_seleksi) }}" class="text-warning"><i
                                     style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
-                            <a href="{{ route('admin.seleksi.destroy', $item->id) }}"
-                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id }}').submit() : false"
+                            <a href="{{ route('admin.seleksi.destroy', $item->id_seleksi) }}"
+                                onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id_seleksi }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>
-                            <form action="{{ route('admin.seleksi.destroy', $item->id) }}" method="post"
-                                id="delete-form{{ $item->id }}">
+                            <form action="{{ route('admin.seleksi.destroy', $item->id_seleksi) }}" method="post"
+                                id="delete-form{{ $item->id_seleksi }}">
                                 @method('delete')
                                 @csrf
                             </form>

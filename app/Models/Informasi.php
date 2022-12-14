@@ -10,4 +10,6 @@ class Informasi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $table = 'informasi';
+    protected $primaryKey = 'id_informasi';
 }
