@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $check = User::find($id);
+        $check = User::where('id_user',$id)->first();
         if($check){
             return view('pages.admin.pengguna.edit',compact('check'));
         }
@@ -78,8 +78,8 @@ class UserController extends Controller
     public function update(RegisterRequest $request, $id)
     {
         if($request->password == null){
-            $check = User::find($id);
-            User::where('id',$check->id)->update([
+            $check = User::where('id_user',$id)->first();
+            User::where('id_user',$check->id)->update([
                 'nama_lengkap' => $request->nama_lengkap,
                 'email' => $request->email,
                 'password' => $check->password,
@@ -97,7 +97,7 @@ class UserController extends Controller
             'no_hp' => 'required|string|min:10',
         ]);
 
-        User::where('id',$id)->update([
+        User::where('id_user',$id)->update([
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -115,9 +115,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $check = User::find($id);
+        $check = User::where('id_user',$id)->first();
         if($check){
-            $check->delete();
+            User::where('id_user',$id)->delete();
             return redirect(route('admin.user.index'))->with(['message' => 'Delete data pengguna Success']);
         }
         return abort(404);

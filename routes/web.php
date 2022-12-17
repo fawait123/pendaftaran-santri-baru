@@ -91,9 +91,9 @@ Route::group(['prefix' => 'admin','middleware'=>'role:admin'], function () {
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.index');
         Route::get('create/', [AdminUserController::class, 'create'])->name('admin.user.create');
         Route::post('store/', [AdminUserController::class, 'store'])->name('admin.user.store');
-        Route::get('/{id}', [AdminUserController::class, 'detail'])->name('admin.user.detail');
-        Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
-        Route::put('/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
-        Route::delete('/{id}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
+        Route::get('/{id_user}', [AdminUserController::class, 'detail'])->name('admin.user.detail');
+        Route::get('/edit/{id_user}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/{id_user}', [AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/{id_user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
     });
 });
