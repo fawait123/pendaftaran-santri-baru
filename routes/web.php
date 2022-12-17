@@ -39,6 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('formulir',[FormulirController::class,'index'])->name('formulir.index');
 Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
+Route::post('profile/change-password',[ProfileController::class,'updatePassword'])->name('profile.password.change');
 Route::post('profile/upload',[ProfileController::class,'upload'])->name('profile.upload');
 Route::post('formulir',[FormulirController::class,'store'])->name('formulir.store');
 Route::get('formulir/cetak',[FormulirController::class,'cetak'])->name('formulir.cetak');
@@ -91,9 +92,9 @@ Route::group(['prefix' => 'admin','middleware'=>'role:admin'], function () {
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.index');
         Route::get('create/', [AdminUserController::class, 'create'])->name('admin.user.create');
         Route::post('store/', [AdminUserController::class, 'store'])->name('admin.user.store');
-        Route::get('/{id}', [AdminUserController::class, 'detail'])->name('admin.user.detail');
-        Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
-        Route::put('/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
-        Route::delete('/{id}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
+        Route::get('/{id_user}', [AdminUserController::class, 'detail'])->name('admin.user.detail');
+        Route::get('/edit/{id_user}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/{id_user}', [AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/{id_user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
     });
 });

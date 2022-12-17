@@ -60,7 +60,7 @@ class InformasiController extends Controller
      */
     public function edit($id)
     {
-        $check = Informasi::find($id);
+        $check = Informasi::where('id_informasi',$id)->first();
         if($check){
             return view('pages.admin.informasi.edit', ['check' => $check]);
         }
@@ -77,9 +77,9 @@ class InformasiController extends Controller
      */
     public function update(InformasiRequest $request, $id)
     {
-        $check = Informasi::find($id);
+        $check = Informasi::where('id_informasi',$id)->first();
         if($check){
-            Informasi::where('id',$id)->update([
+            Informasi::where('id_informasi',$id)->update([
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'step'=>$request->step,
@@ -99,9 +99,9 @@ class InformasiController extends Controller
      */
     public function destroy($id)
     {
-        $check = Informasi::find($id);
+        $check = Informasi::where('id_informasi',$id)->first();
         if($check){
-            $check->delete();
+            Informasi::where('id_informasi',$id)->delete();
             return redirect()->route('admin.informasi.index')->with(['success'=>'Delete Success']);
         }
 

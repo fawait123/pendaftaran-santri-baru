@@ -126,9 +126,9 @@ class DataPendaftarController extends Controller
      */
     public function update(PendaftaranRequest $request, $id)
     {
-        $check = Pendaftaran::find($id);
+        $check = Pendaftaran::where('id_pendaftaran',$id)->first();
         if($check){
-            Santri::where('id',$check->santri_id)->update([
+            Santri::where('id_santri',$check->santri_id)->update([
                 "nama_lengkap" => $request->nama_lengkap,
                 "tempat_lahir" => $request->tempat_lahir,
                 "tgl_lahir" => date('Y-m-d',strtotime($request->tgl_lahir)),
@@ -137,7 +137,7 @@ class DataPendaftarController extends Controller
                 "tinggi_badan" => $request->tinggi_badan,
                 "alamat" => $request->alamat,
                 "asal_sekolah" => $request->asal_sekolah,
-                "jenjang_pendidikan_id" => $request->jenjang_pend,
+                "id_jenjang_pend" => $request->jenjang_pend,
                 "hobi" => $request->hobi,
                 "anak_ke" => $request->anak_ke,
                 "no_kk" => $request->no_kk,
@@ -210,9 +210,9 @@ class DataPendaftarController extends Controller
 
     public function verifikasi($id)
     {
-        $pendaftaran = Pendaftaran::with('santri')->find($id);
+        $pendaftaran = Pendaftaran::with('santri')->where('id_pendaftaran',$id)->first();
         if($pendaftaran){
-            Pendaftaran::where('id',$id)->update([
+            Pendaftaran::where('id_pendaftaran',$id)->update([
                 'verifikasi' => true
             ]);
 
@@ -232,7 +232,7 @@ class DataPendaftarController extends Controller
     {
         $pendaftaran = Pendaftaran::where('verifikasi',null)->get();
         foreach($pendaftaran as $item){
-            Pendaftaran::where('id',$item->id)->update([
+            Pendaftaran::where('id_pendaftaran',$item->id_pendaftaran)->update([
                 'verifikasi' => true
             ]);
             Notifkasi::create([

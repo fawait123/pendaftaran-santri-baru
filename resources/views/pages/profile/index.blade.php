@@ -89,6 +89,41 @@
                 <!-- user profile first-style end-->
             </div>
         </div>
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ route('profile.password.change') }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="new_password">Password Baru</label>
+                                <input type="password" name="password"
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    placeholder="Password Baru">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $password }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="new_password">Ulangi Password</label>
+                                <input type="password" class="form-control" name="password_confirmation"
+                                    placeholder="Ulangi Password">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $password }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12 mt-5">
+                            <div class="form-group">
+                                <button class="btn btn-primary">Ubah Password</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 

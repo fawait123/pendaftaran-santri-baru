@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <h5 class="text-center">Tambah Data Pengguna</h5>
                     </div>
-                    <form class="form theme-form" method="post" action="{{ route('admin.user.update', $check->id) }}">
+                    <form class="form theme-form" method="post" action="{{ route('admin.user.update', $check->id_user) }}">
                         @csrf
                         @method('put')
                         <div class="card-body">

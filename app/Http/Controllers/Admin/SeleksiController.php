@@ -86,7 +86,7 @@ class SeleksiController extends Controller
      */
     public function edit($id)
     {
-        $check = Seleksi::with('pendaftaran.santri')->where('id',$id)->first();
+        $check = Seleksi::with('pendaftaran.santri')->where('id_seleksi',$id)->first();
         if($check){
             $pendaftaran = Pendaftaran::with('santri')->get();
             return view('pages.admin.seleksi.edit',compact('check','pendaftaran'));
@@ -104,10 +104,10 @@ class SeleksiController extends Controller
      */
     public function update(SeleksiRequest $request, $id)
     {
-        $check = Seleksi::find($id);
+        $check = Seleksi::where('id_seleksi',$id)->first();
         if($check){
             $total = ($request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara) / 3;
-            Seleksi::where('id',$id)->update([
+            Seleksi::where('id_seleksi',$id)->update([
                 'nilai_baca_alquran' => $request->nilai_baca_alquran,
                 'nilai_wawancara'=>$request->nilai_wawancara,
                 'nilai_tulis_arab' => $request->nilai_tulis_arab,
@@ -130,8 +130,9 @@ class SeleksiController extends Controller
      */
     public function destroy($id)
     {
-        $check = Seleksi::find($id);
+        $check = Seleksi::where('id_seleksi',$id)->first();
         if($check){
+            Seleksi::where('id_seleksi',$id)->delete();
             return redirect()->route('admin.seleksi.index')->with(['message' =>'Data berhasil dihapus']);
         }
         return redirect()->route('admin.seleksi.index')->with(['message' =>'Oppps error']);
@@ -147,7 +148,7 @@ class SeleksiController extends Controller
 
     public function detail($id)
     {
-        $seleksi = Seleksi::with('pendaftaran.santri')->where('id',$id)->first();
+        $seleksi = Seleksi::with('pendaftaran.santri')->where('id_seleksi',$id)->first();
         if($seleksi){
             return view('pages.admin.seleksi.detail',compact('seleksi'));
         }

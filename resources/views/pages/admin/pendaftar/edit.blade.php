@@ -9,7 +9,8 @@
                         <h5 class="text-center">Edit Formulir Pendaftaran Santri</h5>
                     </div>
                     <form class="form theme-form" method="post"
-                        action="{{ route('admin.pendaftar.update', $pendaftaran->id) }}" enctype="multipart/form-data">
+                        action="{{ route('admin.pendaftar.update', $pendaftaran->id_pendaftaran) }}"
+                        enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="card-body">
@@ -203,8 +204,8 @@
                                         <select name="jenjang_pend" id="jenjang_pend" class="form-control">
                                             <option value="">-- pilih --</option>
                                             @foreach ($jenjang as $j)
-                                                <option value="{{ $j->id }}"
-                                                    {{ $pendaftaran->santri->jenjang_pendidikan_id == $j->id ? 'selected' : '' }}>
+                                                <option value="{{ $j->id_jenjang_pendidikan }}"
+                                                    {{ $pendaftaran->santri->id_jenjang_pend == $j->id_jenjang_pendidikan ? 'selected' : '' }}>
                                                     {{ $j->jenjang_pend }}</option>
                                             @endforeach
                                         </select>

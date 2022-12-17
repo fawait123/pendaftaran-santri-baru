@@ -25,15 +25,15 @@ class RegisterRequest extends FormRequest
     {
         $rules =  [
             'nama_lengkap' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
+            'email' => 'required|string|email|max:255|unique:user,email',
             'password' => 'required|string|min:8|confirmed',
-            'username' => 'required|string|unique:users,username',
+            'username' => 'required|string|unique:user,username',
             'no_hp' => 'required|string|min:10',
         ];
 
         if(in_array($this->method(),['PUT','PATCH'])){
-            $rules['email'] = 'required|string|email|max:255|unique:users,email,'.$this->id;
-            $rules['username'] = 'required|string|unique:users,username,'.$this->id;
+            $rules['email'] = 'required|string|email|max:255|unique:user,email,'.$this->segment('3').',id_user';
+            $rules['username'] = 'required|string|unique:user,username,'.$this->segment('3').',id_user';
             unset($rules['password']);
         }
 

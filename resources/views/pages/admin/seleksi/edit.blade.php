@@ -9,7 +9,8 @@
                     <div class="card-header">
                         <h5 class="text-center">Edit Data Seleksi</h5>
                     </div>
-                    <form class="form theme-form" method="post" action="{{ route('admin.seleksi.update', $check->id) }}">
+                    <form class="form theme-form" method="post"
+                        action="{{ route('admin.seleksi.update', $check->id_seleksi) }}">
                         @csrf
                         @method('put')
                         <div class="card-body">
