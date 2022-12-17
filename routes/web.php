@@ -39,6 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('formulir',[FormulirController::class,'index'])->name('formulir.index');
 Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
+Route::post('profile/change-password',[ProfileController::class,'updatePassword'])->name('profile.password.change');
 Route::post('profile/upload',[ProfileController::class,'upload'])->name('profile.upload');
 Route::post('formulir',[FormulirController::class,'store'])->name('formulir.store');
 Route::get('formulir/cetak',[FormulirController::class,'cetak'])->name('formulir.cetak');
