@@ -21,8 +21,8 @@
                                             placeholder="Pendaftaran" name="pendaftaran_id">
                                             <option value="">-- pilih --</option>
                                             @foreach ($pendaftaran as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ old('pendaftaran_id') == $item->id ? 'selected' : '' }}
+                                                <option value="{{ $item->id_pendaftaran }}"
+                                                    {{ old('pendaftaran_id') == $item->id_pendaftaran ? 'selected' : '' }}
                                                     datasantri="{{ $item->santri->nama_lengkap }}">
                                                     {{ $item->no_daftar }}
                                                 </option>
