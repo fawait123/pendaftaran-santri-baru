@@ -30,7 +30,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="kategori_seleksi">Pilih Ketegori Seleksi</label>
-                                        <select class="form-control @error('kategori_seleksi') is-invalid @enderror"
+                                        <select wire:model="kategori_seleksi"
+                                            class="form-control @error('kategori_seleksi') is-invalid @enderror"
                                             id="kategori_seleksi" type="text" value="{{ old('kategori_seleksi') }}"
                                             placeholder="Pendaftaran" name="kategori_seleksi">
                                             <option value="">-- pilih --</option>
@@ -47,73 +48,230 @@
                                 </div>
                             </div>
                             @if ($isShow)
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th rowspan="1" style="padding-right: 80px;">NO</th>
-                                                <th rowspan="1" style="padding-right: 80px;">No Pendaftaran</th>
-                                                <th rowspan="1" style="padding-right: 80px;">Nama</th>
-                                                <th colspan="3"align="center">Ketepatan
-                                                    Tajwid</th>
-                                                <th style="padding-right: 80px;">Makhroj</th>
-                                                <th style="padding-right: 80px;">Kelancaran Membaca</th>
-                                                <th style="padding-right: 80px;">Adab Membaca</th>
-                                                <th style="padding-right: 80px;">Jumlah Skor</th>
-                                                <th style="padding-right: 80px;">Nilai Akhir</th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th style="padding-right: 80px;">Mad</th>
-                                                <th style="padding-right: 80px;">Qalqalah</th>
-                                                <th style="padding-right: 80px;">Idgham</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $no = 0;
-                                            @endphp
-                                            @foreach ($pendaftaran as $item)
+                                @if ($kategori_seleksi == 'nilai_baca_alquran')
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->santri->nama_lengkap }}</td>
-                                                    <td>
-                                                        <input type="text" class="form-control"
-                                                            name="pendaftaran_id[]" value="{{ $item->id_pendaftaran }}"
-                                                            readonly>
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control" type="text"
-                                                            name="mad[{{ $no }}]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text" name="qalqalah[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text" name="idgham[]"></td>
-                                                    <td><input class="form-control" type="text" name="makhroj[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text"
-                                                            name="kelancaran_membaca[]"></td>
-                                                    <td><input class="form-control" type="text"
-                                                            name="adab_membaca[]"></td>
-                                                    <td><input class="form-control" type="text" name="jumlah_skor[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text" name="nilai_akhir[]">
-                                                    </td>
+                                                    <th rowspan="1" style="padding-right: 80px;">NO</th>
+                                                    <th rowspan="1" style="padding-right: 80px;">No Pendaftaran</th>
+                                                    <th rowspan="1" style="padding-right: 80px;">Nama</th>
+                                                    <th colspan="3"align="center">Ketepatan
+                                                        Tajwid</th>
+                                                    <th style="padding-right: 80px;">Makhroj</th>
+                                                    <th style="padding-right: 80px;">Kelancaran Membaca</th>
+                                                    <th style="padding-right: 80px;">Adab Membaca</th>
                                                 </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th style="padding-right: 80px;">Mad</th>
+                                                    <th style="padding-right: 80px;">Qalqalah</th>
+                                                    <th style="padding-right: 80px;">Idgham</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 @php
-                                                    $no++;
+                                                    $no = 0;
                                                 @endphp
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                @foreach ($pendaftaran as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->santri->nama_lengkap }}</td>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="pendaftaran_id[]"
+                                                                value="{{ $item->id_pendaftaran }}" readonly>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" type="text"
+                                                                name="mad[{{ $no }}]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="qalqalah[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text" name="idgham[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text" name="makhroj[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kelancaran_membaca[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="adab_membaca[]"></td>
+                                                    </tr>
+                                                    @php
+                                                        $no++;
+                                                    @endphp
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @elseif ($kategori_seleksi == 'nilai_tulis_arab')
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="1" style="padding-right: 80px;">NO</th>
+                                                    <th rowspan="1" style="padding-right: 80px;">Nama</th>
+                                                    <th rowspan="1" style="padding-right: 80px;">No Pendaftaran</th>
+                                                    <th colspan="2" align="center">Menulis Syakal</th>
+                                                    <th colspan="3">Menyambung Syakal</th>
+                                                    <th style="padding-right: 80px;">Menulis Ayat Khusus</th>
+                                                    <th style="padding-right: 80px;">Menguasai Metode Tulis Arab</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th style="padding-right: 80px;">Dengan Syakal</th>
+                                                    <th style="padding-right: 80px;">Tanpa Syakal</th>
+                                                    <th style="padding-right: 80px;">2 Syakal</th>
+                                                    <th style="padding-right: 80px;">3 Syakal</th>
+                                                    <th style="padding-right: 80px;">4 Syakal</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $no = 0;
+                                                @endphp
+                                                @foreach ($pendaftaran as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->santri->nama_lengkap }}</td>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="pendaftaran_id[]"
+                                                                value="{{ $item->id_pendaftaran }}" readonly>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" type="text"
+                                                                name="dengan_syakal[{{ $no }}]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="tanpa_syakal[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="2_syakal[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="3_syakal[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="4_syakal[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="menulis_ayat_khusus[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="menguasai_metode_arab[]"></td>
+                                                    </tr>
+                                                    @php
+                                                        $no++;
+                                                    @endphp
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @elseif ($kategori_seleksi == 'nilai_wawancara')
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="1" style="padding-right: 80px;">NO</th>
+                                                    <th rowspan="1" style="padding-right: 80px;">Nama</th>
+                                                    <th rowspan="1" style="padding-right: 80px;">No Pendaftaran
+                                                    </th>
+                                                    <th colspan="3" align="center">Motivasi Belajar</th>
+                                                    <th colspan="3">Kebersihan Lingkungan</th>
+                                                    <th colspan="3">Kemandirian</th>
+                                                    <th colspan="3">Hubungan Sosial</th>
+                                                    <th colspan="3">Adab Wawancara</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th style="padding-right: 80px;">1</th>
+                                                    <th style="padding-right: 80px;">2</th>
+                                                    <th style="padding-right: 80px;">3</th>
+                                                    <th style="padding-right: 80px;">1</th>
+                                                    <th style="padding-right: 80px;">2</th>
+                                                    <th style="padding-right: 80px;">3</th>
+                                                    <th style="padding-right: 80px;">1</th>
+                                                    <th style="padding-right: 80px;">2</th>
+                                                    <th style="padding-right: 80px;">3</th>
+                                                    <th style="padding-right: 80px;">1</th>
+                                                    <th style="padding-right: 80px;">2</th>
+                                                    <th style="padding-right: 80px;">3</th>
+                                                    <th style="padding-right: 80px;">1</th>
+                                                    <th style="padding-right: 80px;">2</th>
+                                                    <th style="padding-right: 80px;">3</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $no = 0;
+                                                @endphp
+                                                @foreach ($pendaftaran as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->santri->nama_lengkap }}</td>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="pendaftaran_id[]"
+                                                                value="{{ $item->id_pendaftaran }}" readonly>
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="motivasi_1[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="motivasi_2[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="motivasi_3[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kebersihan_1[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kebersihan_2[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kebersihan_3[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kemandirian_1[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kemandirian_2[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="kemandirian_3[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="sosial_1[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="sosial_2[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="sosial_3[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="adab_1[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="adab_2[]"></td>
+                                                        <td><input class="form-control" type="text"
+                                                                name="adab_3[]"></td>
+                                                    </tr>
+                                                    @php
+                                                        $no++;
+                                                    @endphp
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
                         </div>
                         <div class="card-footer text-end">
                             <button class="btn btn-primary" type="submit">Submit</button>
