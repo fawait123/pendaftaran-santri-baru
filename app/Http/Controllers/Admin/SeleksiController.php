@@ -224,6 +224,7 @@ class SeleksiController extends Controller
                         'nilai_baca_alquran'=>$nilai['nilai_akhir'],
                         'total_penilaian' => $nilai['nilai_akhir'] / 3,
                         'kelas' =>$kelas,
+                        'tahun'=>$request->tahun
                     ]);
 
                     DetailSeleksi::create([
@@ -261,6 +262,7 @@ class SeleksiController extends Controller
                         'nilai_tulis_arab'=>$nilai['nilai_akhir'],
                         'total_penilaian' => $nilai['nilai_akhir'] / 3,
                         'kelas' =>$kelas,
+                        'tahun'=>$request->tahun
                     ]);
 
                     DetailSeleksi::create([
@@ -298,6 +300,7 @@ class SeleksiController extends Controller
                         'nilai_wawancara'=>$nilai['nilai_akhir'],
                         'total_penilaian' => $nilai['nilai_akhir'] / 3,
                         'kelas' =>$kelas,
+                        'tahun'=>$request->tahun
                     ]);
 
                     DetailSeleksi::create([
@@ -322,11 +325,12 @@ class SeleksiController extends Controller
         $qalqalah = $data['qalqalah'];
         $idgham = $data['idgham'];
         $makhroj = $data['makhroj'];
+        $ikhfa = $data['ikhfa'];
         $kelancaran_membaca = $data['kelancaran_membaca'];
         $adab_membaca = $data['adab_membaca'];
 
         for($i=0; $i < count($pendaftaran_id);$i++){
-            $total = $mad[$i] + $qalqalah[$i] + $idgham[$i] + $makhroj[$i] + $kelancaran_membaca[$i] + $adab_membaca[$i];
+            $total = $mad[$i] + $qalqalah[$i] + $idgham[$i] + $makhroj[$i] + $kelancaran_membaca[$i] + $adab_membaca[$i] + $ikhfa[$i];
             $arr->push([
                 'pendaftaran_id'=>$pendaftaran_id[$i],
                 'jumlah_skor'=>$total,
@@ -336,6 +340,7 @@ class SeleksiController extends Controller
                     'qalqalah'=>$qalqalah[$i],
                     'idgham'=>$idgham[$i],
                     'makhroj'=>$makhroj[$i],
+                    'ikhfa'=>$ikhfa[$i],
                     'kelancaran_membaca'=>$kelancaran_membaca[$i],
                     'adab_membaca'=>$adab_membaca[$i]
                 ]),
@@ -362,13 +367,13 @@ class SeleksiController extends Controller
                 'jumlah_skor'=>$total,
                 'nilai_akhir'=>($total * 100) / 28,
                 'data'=>json_encode([
-                    'dengan_syakal'=>$dengan_syakal,
-                    'tanpa_syakal'=>$tanpa_syakal,
-                    'syakal_2'=>$syakal_2,
-                    'syakal_3'=>$syakal_3,
-                    'syakal_4'=>$syakal_4,
-                    'menulis_ayat_khusus'=>$menulis_ayat_khusus,
-                    'menguasai_metode_arab'=>$menguasai_metode_arab,
+                    'dengan_syakal'=>$dengan_syakal[$i],
+                    'tanpa_syakal'=>$tanpa_syakal[$i],
+                    'syakal_2'=>$syakal_2[$i],
+                    'syakal_3'=>$syakal_3[$i],
+                    'syakal_4'=>$syakal_4[$i],
+                    'menulis_ayat_khusus'=>$menulis_ayat_khusus[$i],
+                    'menguasai_metode_arab'=>$menguasai_metode_arab[$i],
                 ])
             ]);
         }
@@ -405,21 +410,21 @@ class SeleksiController extends Controller
                 'jumlah_skor'=>$total,
                 'nilai_akhir'=>($total * 100) / 15,
                 'data'=>json_encode([
-                    'motivasi_1'=>$motivasi_1,
-                    'motivasi_2'=>$motivasi_2,
-                    'motivasi_3'=>$motivasi_3,
-                    'kebersihan_1'=>$kebersihan_1,
-                    'kebersihan_2'=>$kebersihan_2,
-                    'kebersihan_3'=>$kebersihan_3,
-                    'kemandirian_1'=>$kemandirian_1,
-                    'kemandirian_2'=>$kemandirian_2,
-                    'kemandirian_3'=>$kemandirian_3,
-                    'sosial_1'=>$sosial_1,
-                    'sosial_2'=>$sosial_2,
-                    'sosial_3'=>$sosial_3,
-                    'adab_1'=>$adab_1,
-                    'adab_2'=>$adab_2,
-                    'adab_3'=>$adab_3,
+                    'motivasi_1'=>$motivasi_1[$i],
+                    'motivasi_2'=>$motivasi_2[$i],
+                    'motivasi_3'=>$motivasi_3[$i],
+                    'kebersihan_1'=>$kebersihan_1[$i],
+                    'kebersihan_2'=>$kebersihan_2[$i],
+                    'kebersihan_3'=>$kebersihan_3[$i],
+                    'kemandirian_1'=>$kemandirian_1[$i],
+                    'kemandirian_2'=>$kemandirian_2[$i],
+                    'kemandirian_3'=>$kemandirian_3[$i],
+                    'sosial_1'=>$sosial_1[$i],
+                    'sosial_2'=>$sosial_2[$i],
+                    'sosial_3'=>$sosial_3[$i],
+                    'adab_1'=>$adab_1[$i],
+                    'adab_2'=>$adab_2[$i],
+                    'adab_3'=>$adab_3[$i],
                 ])
             ]);
         }
@@ -448,7 +453,7 @@ class SeleksiController extends Controller
         $check = Seleksi::with('pendaftaran.santri')->where('id_seleksi',$id)->first();
         if($check){
             $pendaftaran = Pendaftaran::with('santri')->get();
-            return view('pages.admin.seleksi.edit',compact('check','pendaftaran'));
+            return view('pages.admin.seleksi.create',compact('pendaftaran','check','id'));
         }
 
         return abort(404);
@@ -461,24 +466,83 @@ class SeleksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SeleksiRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $check = Seleksi::where('id_seleksi',$id)->first();
-        if($check){
-            $total = ($request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara) / 3;
-            Seleksi::where('id_seleksi',$id)->update([
-                'nilai_baca_alquran' => $request->nilai_baca_alquran,
-                'nilai_wawancara'=>$request->nilai_wawancara,
-                'nilai_tulis_arab' => $request->nilai_tulis_arab,
-                'total_penilaian' => $total,
-                'kamar' => $request->kamar,
-                'keterangan' => $request->keterangan,
-                'kelas' =>$request->kelas,
-                'status' =>$request->status
-            ]);
-            return redirect()->route('admin.seleksi.index')->with(['message' =>'Data berhasil diupdate']);
+        // dd($request->all());
+        // $check = Seleksi::where('id_seleksi',$id)->first();
+        // if($check){
+        //     $total = ($request->nilai_baca_alquran + $request->nilai_tulis_arab + $request->nilai_wawancara) / 3;
+        //     Seleksi::where('id_seleksi',$id)->update([
+        //         'nilai_baca_alquran' => $request->nilai_baca_alquran,
+        //         'nilai_wawancara'=>$request->nilai_wawancara,
+        //         'nilai_tulis_arab' => $request->nilai_tulis_arab,
+        //         'total_penilaian' => $total,
+        //         'kamar' => $request->kamar,
+        //         'keterangan' => $request->keterangan,
+        //         'kelas' =>$request->kelas,
+        //         'status' =>$request->status
+        //     ]);
+        //     return redirect()->route('admin.seleksi.index')->with(['message' =>'Data berhasil diupdate']);
+        // }
+        // return redirect()->route('admin.seleksi.index')->with(['message' =>'Oppps error']);
+        if($request->kategori_seleksi == 'nilai_baca_alquran'){
+            $nilaiBacaAlquran = $this->calculateBacaAlquran($request->all());
+            foreach($nilaiBacaAlquran as $nilai){
+                    $check = Seleksi::where('id_seleksi',$id)->first();
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 3;
+                    // dd($nilaiA);
+                    $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    Seleksi::where('id_seleksi',$id)->update([
+                        'nilai_baca_alquran'=>$nilai['nilai_akhir'],
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 3,
+                        'kelas' =>$kelas,
+                    ]);
+                    DetailSeleksi::where('seleksi_id',$id)->where('kategori_seleksi','nilai_baca_alquran')->update([
+                        'seleksi_id'=>$check['id_seleksi'],
+                        'kategori_seleksi'=>$request['kategori_seleksi'],
+                        'seleksi_data'=>$nilai['data'],
+                    ]);
+
+            }
+        }else if($request->kategori_seleksi == 'nilai_tulis_arab'){
+            $nilaiTulisArab = $this->calculateNilaiTulisArab($request->all());
+            foreach($nilaiTulisArab as $nilai){
+                $check = Seleksi::where('id_seleksi',$id)->first();
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 3;
+                    $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    Seleksi::where('id_seleksi',$id)->update([
+                        'nilai_tulis_arab'=>$nilai['nilai_akhir'],
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 3,
+                        'kelas' =>$kelas,
+                    ]);
+                    DetailSeleksi::where('seleksi_id',$id)->where('kategori_seleksi','nilai_tulis_arab')->update([
+                        'seleksi_id'=>$check['id_seleksi'],
+                        'kategori_seleksi'=>$request['kategori_seleksi'],
+                        'seleksi_data'=>$nilai['data'],
+                    ]);
+            }
+        }else if($request->kategori_seleksi == 'nilai_wawancara'){
+            $nilaiWawancara = $this->calculateNilaiWawancara($request->all());
+            foreach($nilaiWawancara as $nilai){
+                $check = Seleksi::where('id_seleksi',$id)->first();
+
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 3;
+                    $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    Seleksi::where('id_seleksi',$id)->update([
+                        'nilai_wawancara'=>$nilai['nilai_akhir'],
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 3,
+                        'kelas' =>$kelas,
+                    ]);
+                    DetailSeleksi::where('seleksi_id',$id)->where('kategori_seleksi','nilai_wawancara')->update([
+                        'seleksi_id'=>$check['id_seleksi'],
+                        'kategori_seleksi'=>$request['kategori_seleksi'],
+                        'seleksi_data'=>$nilai['data'],
+                    ]);
+
+            }
         }
-        return redirect()->route('admin.seleksi.index')->with(['message' =>'Oppps error']);
+
+        return redirect()->route('admin.seleksi.index')->with(['message' =>'Berhasil menambah data seleksi']);
     }
 
     /**
@@ -507,9 +571,9 @@ class SeleksiController extends Controller
 
     public function detail($id)
     {
-        $seleksi = Seleksi::with('pendaftaran.santri')->where('id_seleksi',$id)->first();
-        if($seleksi){
-            return view('pages.admin.seleksi.detail',compact('seleksi'));
+        $pendaftaran = Seleksi::with(['pendaftaran.santri','detail'])->where('id_seleksi',$id)->get();
+        if($pendaftaran){
+            return view('pages.admin.seleksi.detail',compact('pendaftaran','id'));
         }
 
         return abort(404);
