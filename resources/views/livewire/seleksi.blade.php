@@ -35,8 +35,24 @@
                         <td class="text-center">
                             <a href="{{ route('admin.seleksi.detail', $item->id_seleksi) }}" class="text-primary"><i
                                     style="font-size: 19px" class="icofont icofont-open-eye"></i></a>
-                            <a href="{{ route('admin.seleksi.edit', $item->id_seleksi) }}" class="text-warning"><i
-                                    style="font-size: 19px" class="icofont icofont-ui-edit"></i></a>
+                            <div class="dropdown-basic" style="display: inline">
+                                <div class="dropdown">
+                                    <button class="text-warning dropbtn" style="background: transparent"><i
+                                            style="font-size: 19px" class="icofont icofont-ui-edit"></i></button>
+                                    <div class="dropdown-content">
+                                        <a
+                                            href="{{ route('admin.seleksi.edit', $item->id_seleksi) }}?kategori_seleksi=nilai_baca_alquran&tahun={{ $item->tahun }}&id_seleksi={{ $item->id_seleksi }}">Nilai
+                                            Baca
+                                            Alquran</a>
+                                        <a
+                                            href="{{ route('admin.seleksi.edit', $item->id_seleksi) }}?kategori_seleksi=nilai_tulis_arab&tahun={{ $item->tahun }}&id_seleksi={{ $item->id_seleksi }}">Nilai
+                                            Tulis Arab</a>
+                                        <a
+                                            href="{{ route('admin.seleksi.edit', $item->id_seleksi) }}?kategori_seleksi=nilai_wawancara&tahun={{ $item->tahun }}&id_seleksi={{ $item->id_seleksi }}">Nilai
+                                            Wawancara</a>
+                                    </div>
+                                </div>
+                            </div>
                             <a href="{{ route('admin.seleksi.destroy', $item->id_seleksi) }}"
                                 onclick="event.preventDefault();return confirm('yakin ingin menghapus data ?') ? document.getElementById('delete-form{{ $item->id_seleksi }}').submit() : false"
                                 class="text-danger"><i style="font-size: 19px" class="icofont icofont-trash"></i></a>

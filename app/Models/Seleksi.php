@@ -19,4 +19,9 @@ class Seleksi extends Model
     {
         return $this->belongsTo(Pendaftaran::class,'pendaftaran_id');
     }
+
+    public function detail()
+    {
+        return $this->hasMany(DetailSeleksi::class,'seleksi_id');
+    }
 }
