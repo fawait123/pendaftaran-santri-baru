@@ -19,6 +19,8 @@
                 <th>Tulis Arab</th>
                 <th>Wawancara</th>
                 <th>Total</th>
+                <th>Kelas</th>
+                <th>Status</th>
                 <th class="text-center">Aksi</th>
             </tr>
         </thead>
@@ -32,6 +34,8 @@
                         <td>{{ $item->nilai_tulis_arab }}</td>
                         <td>{{ $item->nilai_wawancara }}</td>
                         <td>{{ $item->total_penilaian }}</td>
+                        <td>{{ $item->kelas }}</td>
+                        <td>{{ $item->status }}</td>
                         <td class="text-center">
                             <a href="{{ route('admin.seleksi.detail', $item->id_seleksi) }}" class="text-primary"><i
                                     style="font-size: 19px" class="icofont icofont-open-eye"></i></a>
