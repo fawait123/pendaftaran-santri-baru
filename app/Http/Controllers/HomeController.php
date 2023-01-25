@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Santri;
+use App\Models\Pendaftaran;
 use App\Models\Seleksi;
 
 class HomeController extends Controller
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $total_santri = Santri::count();
+        $total_santri = Pendaftaran::count();
         $total_seleksi = Seleksi::count();
         return view('home',compact('total_santri', 'total_seleksi'));
     }
