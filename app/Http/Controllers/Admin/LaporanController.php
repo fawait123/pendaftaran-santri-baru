@@ -9,6 +9,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\SantriExport;
 use App\Exports\SeleksiExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Pendaftaran;
+use App\Models\Seleksi;
 
 class LaporanController extends Controller
 {
@@ -33,11 +35,21 @@ class LaporanController extends Controller
 
     public function downloadSantri($request)
     {
-        return Excel::download(new SantriExport, 'laporan-data-santri.xlsx',\Maatwebsite\Excel\Excel::XLSX);
+        // return Excel::download(new SantriExport, 'laporan-data-santri.xlsx',\Maatwebsite\Excel\Excel::XLSX);
+        $pendaftaran = Pendaftaran::with('santri')->get();
+        $pdf = Pdf::loadView('pdf.data-santri',[
+            'santri'=>$pendaftaran
+        ]);
+        return $pdf->download('data-penerimaan-santri-baru.pdf');
     }
 
     public function downloadSeleksi($request)
     {
-        return Excel::download(new SeleksiExport, 'laporan-data-seleksi.xlsx',\Maatwebsite\Excel\Excel::XLSX);
+        // return Excel::download(new SeleksiExport, 'laporan-data-seleksi.xlsx',\Maatwebsite\Excel\Excel::XLSX);
+        $pendaftaran = Seleksi::with('pendaftaran.santri')->get();
+        $pdf = Pdf::loadView('pdf.seleksi',[
+            'seleksi'=>$pendaftaran
+        ]);
+        return $pdf->download('data-seleksi-santri-baru.pdf');
     }
 }

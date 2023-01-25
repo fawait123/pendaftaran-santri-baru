@@ -203,12 +203,14 @@ class SeleksiController extends Controller
                 $check = Seleksi::where('pendaftaran_id',$nilai['pendaftaran_id'])->first();
 
                 if($check){
-                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     Seleksi::where('pendaftaran_id',$nilai['pendaftaran_id'])->update([
                         'nilai_baca_alquran'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 3,
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 2,
                         'kelas' =>$kelas,
+                        'status'=>$status
                     ]);
                     DetailSeleksi::create([
                         'seleksi_id'=>$check['id_seleksi'],
@@ -216,15 +218,17 @@ class SeleksiController extends Controller
                         'seleksi_data'=>$nilai['data'],
                     ]);
                 }else{
-                    $nilaiA = ($nilai['nilai_akhir']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     $seleksi = Seleksi::create([
                         'no_seleksi'=>$this->IDSeleksi(),
                         'pendaftaran_id' => $nilai['pendaftaran_id'],
                         'nilai_baca_alquran'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => $nilai['nilai_akhir'] / 3,
+                        'total_penilaian' => $nilai['nilai_akhir'] / 2,
                         'kelas' =>$kelas,
-                        'tahun'=>$request->tahun
+                        'tahun'=>$request->tahun,
+                        'status'=>$status
                     ]);
 
                     DetailSeleksi::create([
@@ -241,12 +245,14 @@ class SeleksiController extends Controller
                 $check = Seleksi::where('pendaftaran_id',$nilai['pendaftaran_id'])->first();
 
                 if($check){
-                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     Seleksi::where('pendaftaran_id',$nilai['pendaftaran_id'])->update([
                         'nilai_tulis_arab'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 3,
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 2,
                         'kelas' =>$kelas,
+                        'status'=>$status
                     ]);
                     DetailSeleksi::create([
                         'seleksi_id'=>$check['id_seleksi'],
@@ -254,15 +260,17 @@ class SeleksiController extends Controller
                         'seleksi_data'=>$nilai['data'],
                     ]);
                 }else{
-                    $nilaiA = ($nilai['nilai_akhir']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     $seleksi = Seleksi::create([
                         'no_seleksi'=>$this->IDSeleksi(),
                         'pendaftaran_id' => $nilai['pendaftaran_id'],
                         'nilai_tulis_arab'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => $nilai['nilai_akhir'] / 3,
+                        'total_penilaian' => $nilai['nilai_akhir'] / 2,
                         'kelas' =>$kelas,
-                        'tahun'=>$request->tahun
+                        'tahun'=>$request->tahun,
+                        'status'=>$status
                     ]);
 
                     DetailSeleksi::create([
@@ -279,12 +287,14 @@ class SeleksiController extends Controller
                 $check = Seleksi::where('pendaftaran_id',$nilai['pendaftaran_id'])->first();
 
                 if($check){
-                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     Seleksi::where('pendaftaran_id',$nilai['pendaftaran_id'])->update([
                         'nilai_wawancara'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 3,
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 2,
                         'kelas' =>$kelas,
+                        'status'=>$status
                     ]);
                     DetailSeleksi::create([
                         'seleksi_id'=>$check['id_seleksi'],
@@ -292,15 +302,17 @@ class SeleksiController extends Controller
                         'seleksi_data'=>$nilai['data'],
                     ]);
                 }else{
-                    $nilaiA = ($nilai['nilai_akhir']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     $seleksi = Seleksi::create([
                         'no_seleksi'=>$this->IDSeleksi(),
                         'pendaftaran_id' => $nilai['pendaftaran_id'],
                         'nilai_wawancara'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => $nilai['nilai_akhir'] / 3,
+                        'total_penilaian' => $nilai['nilai_akhir'] / 2,
                         'kelas' =>$kelas,
-                        'tahun'=>$request->tahun
+                        'tahun'=>$request->tahun,
+                        'status'=>$status
                     ]);
 
                     DetailSeleksi::create([
@@ -489,13 +501,14 @@ class SeleksiController extends Controller
             $nilaiBacaAlquran = $this->calculateBacaAlquran($request->all());
             foreach($nilaiBacaAlquran as $nilai){
                     $check = Seleksi::where('id_seleksi',$id)->first();
-                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 3;
-                    // dd($nilaiA);
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 2;
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
                     Seleksi::where('id_seleksi',$id)->update([
                         'nilai_baca_alquran'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 3,
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_tulis_arab']) / 2,
                         'kelas' =>$kelas,
+                        'status'=>$status
                     ]);
                     DetailSeleksi::where('seleksi_id',$id)->where('kategori_seleksi','nilai_baca_alquran')->update([
                         'seleksi_id'=>$check['id_seleksi'],
@@ -508,12 +521,14 @@ class SeleksiController extends Controller
             $nilaiTulisArab = $this->calculateNilaiTulisArab($request->all());
             foreach($nilaiTulisArab as $nilai){
                 $check = Seleksi::where('id_seleksi',$id)->first();
-                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     Seleksi::where('id_seleksi',$id)->update([
                         'nilai_tulis_arab'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 3,
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_wawancara'] + $check['nilai_baca_alquran']) / 2,
                         'kelas' =>$kelas,
+                        'status'=>$status
                     ]);
                     DetailSeleksi::where('seleksi_id',$id)->where('kategori_seleksi','nilai_tulis_arab')->update([
                         'seleksi_id'=>$check['id_seleksi'],
@@ -526,12 +541,14 @@ class SeleksiController extends Controller
             foreach($nilaiWawancara as $nilai){
                 $check = Seleksi::where('id_seleksi',$id)->first();
 
-                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 3;
+                    $nilaiA = ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 2;
                     $kelas = $nilaiA > 60 ? 'awalliyah robi' : 'awalliyah tsalist';
+                    $status = $nilaiA >= 25 ? 'Lolos' : 'Tidak Lolos';
                     Seleksi::where('id_seleksi',$id)->update([
                         'nilai_wawancara'=>$nilai['nilai_akhir'],
-                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 3,
+                        'total_penilaian' => ($nilai['nilai_akhir'] + $check['nilai_tulis_arab'] + $check['nilai_baca_alquran']) / 2,
                         'kelas' =>$kelas,
+                        'status'=>$status,
                     ]);
                     DetailSeleksi::where('seleksi_id',$id)->where('kategori_seleksi','nilai_wawancara')->update([
                         'seleksi_id'=>$check['id_seleksi'],
