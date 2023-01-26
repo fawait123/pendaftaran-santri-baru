@@ -40,7 +40,7 @@
                                 <div style="display: flex;justify-content: center;">
                                     <div style="width: 300px;padding:20px;margin-top:20px; text-align:center;">
                                         @if (count($pendaftaran->seleksi) > 0)
-                                            @if ($pendaftaran->seleksi[0]->status == 'lulus')
+                                            @if ($pendaftaran->seleksi[0]->status == 'Lolos')
                                                 <span style="font-size: 20px;text-align: center">SELAMAT ANDA DITERIMA
                                                     MENJADI
                                                     SANTRI
