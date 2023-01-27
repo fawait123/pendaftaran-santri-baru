@@ -208,24 +208,29 @@ class DataPendaftarController extends Controller
         return $no_urut;
     }
 
-    public function verifikasi($id)
+    public function verifikasi(Request $request,$id)
     {
-        $pendaftaran = Pendaftaran::with('santri')->where('id_pendaftaran',$id)->first();
-        if($pendaftaran){
-            Pendaftaran::where('id_pendaftaran',$id)->update([
-                'verifikasi' => true
+        $verifikasi = $request->status == 'acc' ? true : false;
+        $url = route('change-data',$id);
+        if($verifikasi){
+            $url = '#';
+        }
+        $check = Pendaftaran::find($id);
+        if($check){
+            $check->update([
+                'status'=>$request->status,
+                'verifikasi'=>$verifikasi,
+                'keterangan'=>$request->keterangan
             ]);
-
             Notifkasi::create([
-                'user_id'=>$pendaftaran->user_id,
-                'notification' => 'Formulir anda sudah diverifikasi'
+                'user_id' => $request->user_id,
+                'notification'=>'Data Pendaftaran Anda '. $request->status . ', ' . $request->keterangan,
+                'url'=>$url
             ]);
-
-
             return redirect()->route('admin.pendaftar.index')->with(['message'=>'Verifikasi berhasil']);
         }
 
-        return redirect()->route('admin.pendaftar.index')->with(['message'=>'Opps error']);
+        return abort(404);
     }
 
     public function verifikasiAll()

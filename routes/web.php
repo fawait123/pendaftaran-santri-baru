@@ -50,6 +50,8 @@ Route::get('notifikasi',[NotifikasiController::class,'index'])->name('notifikasi
 Route::get('notifikasi/read/all',[NotifikasiController::class,'readAll'])->name('notifikasi.readAll');
 Route::get('notifikasi/read/{id}',[NotifikasiController::class,'read'])->name('notifikasi.read');
 Route::delete('notifikasi/destroy/{id}',[NotifikasiController::class,'destroy'])->name('notifikasi.destroy');
+Route::get('change-data/{id}',[FormulirController::class,'change'])->name('change-data');
+Route::post('formulir/update/{id}',[FormulirController::class,'update'])->name('formulir.change.update');
 
 
 // admin
