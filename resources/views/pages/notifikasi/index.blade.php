@@ -29,7 +29,7 @@
                                             ? '<span class="badge bg-success">read</span>'
                                             : '<span class="badge bg-danger">unread</span>' !!}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <a href="{{ route('notifikasi.read', $item->id) }}"
                                                 onclick="return confirm('Read notifikasi sekarang ?')"
                                                 class="text-primary {{ $item->is_read == true ? 'disabled-link' : '' }}">read</a>
@@ -41,7 +41,7 @@
                                                 @csrf
                                                 @method('delete')
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </table>

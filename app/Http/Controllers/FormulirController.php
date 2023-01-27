@@ -71,8 +71,64 @@ class FormulirController extends Controller
 
             return redirect()->route('formulir.index')->with('success','Pendaftaran Santri Baru Berhasil');
         }catch(Exception $error){
+            dd($error);
+            return redirect()->route('formulir.index')->with('error',$error->getMessage());
+        }
+    }
 
-            // dd($error);
+    public function update(Request $request,$id)
+    {
+        try{
+            // dd($request->all());
+            $pendaftaran = Pendaftaran::find($id);
+            $foto = $pendaftaran->santri->foto;
+            $fc_akta = $pendaftaran->santri->fc_akta;
+            $fc_kk = $pendaftaran->santri->fc_kk;
+            if($request->hasFile('foto')){
+                $foto = $this->convertTobase64($request->file('foto'));
+            }
+            if($request->hasFile('fc_akta')){
+                $fc_akta = $this->convertTobase64($request->file('fc_akta'));
+            }
+            if($request->hasFile('fc_kk')){
+                $fc_kk = $this->convertTobase64($request->file('fc_kk'));
+            }
+            Santri::where('id_santri',$pendaftaran->santri_id)->update([
+              "nama_lengkap" => $request->nama_lengkap,
+              "tempat_lahir" => $request->tempat_lahir,
+              "tgl_lahir" => date('Y-m-d',strtotime($request->tgl_lahir)),
+              "jenis_kelamin" => $request->jenis_kelamin,
+              "berat_badan" => $request->berat_badan,
+              "tinggi_badan" => $request->tinggi_badan,
+              "alamat" => $request->alamat,
+              "asal_sekolah" => $request->asal_sekolah,
+              "id_jenjang_pend" => $request->jenjang_pend,
+              "hobi" => $request->hobi,
+              "anak_ke" => $request->anak_ke,
+              "no_kk" => $request->no_kk,
+              "nik" => $request->nik,
+              "no_hp" => $request->no_hp,
+              "email" => $request->email,
+              "nik_ayah" => $request->nik_ayah,
+              "nama_ayah" => $request->nama_ayah,
+              "pekerjaan_ayah" => $request->pekerjaan_ayah,
+              "nik_ibu" => $request->nik_ibu,
+              "nama_ibu" => $request->nama_ibu,
+              "pekerjaan_ibu" => $request->pekerjaan_ibu,
+              "foto" => $foto,
+              "fc_kk" => $fc_kk,
+              "fc_akta" => $fc_akta,
+              'gol_darah'=> $request->gol_darah
+            ]);
+
+            Pendaftaran::where('id_pendaftaran',$id)->update([
+                'status'=>'on proses',
+                'keterangan'=>null
+            ]);
+
+            return redirect()->route('formulir.index')->with('success','Pendaftaran Santri Baru Berhasil');
+        }catch(Exception $error){
+            dd($error);
             return redirect()->route('formulir.index')->with('error',$error->getMessage());
         }
     }
@@ -114,5 +170,12 @@ class FormulirController extends Controller
         $pendaftaran = Pendaftaran::with('santri')->find($id);
         $pdf = Pdf::loadView('pdf.cetak',compact('pendaftaran'));
         return $pdf->download('data-pendaftar.pdf');
+    }
+
+    public function change($id)
+    {
+        $jenjang = Pendidikan::all();
+        $pendaftaran = Pendaftaran::find($id);
+        return view('pages.formulir.change',compact('jenjang','pendaftaran'));
     }
 }

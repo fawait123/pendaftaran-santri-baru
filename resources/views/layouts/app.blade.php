@@ -130,11 +130,13 @@
                                 <ul>
                                     @if (count($notifications) > 0)
                                         @foreach ($notifications as $item)
-                                            <li class="b-l-primary border-4">
-                                                <p>{{ $item->notification }} <span
-                                                        class="font-danger">{{ $item->created_at->diffForHumans() }}</span>
-                                                </p>
-                                            </li>
+                                            <a href="{{ $item->url }}">
+                                                <li class="b-l-primary border-4">
+                                                    <p>{{ $item->notification }} <span
+                                                            class="font-danger">{{ $item->created_at->diffForHumans() }}</span>
+                                                    </p>
+                                                </li>
+                                            </a>
                                         @endforeach
                                     @else
                                         <li class="b-l-primary border-4 disabled-link">Tidak Ada notifikasi</li>
