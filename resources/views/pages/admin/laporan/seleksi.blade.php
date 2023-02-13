@@ -14,6 +14,12 @@
                                     @csrf
                                     <div class="row">
                                         <input type="hidden" name="data" value="seleksi">
+                                        <div class="form-group">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="Lolos" selected>Lolos</option>
+                                                <option value="Tidak Lolos">Tidak Lolos</option>
+                                            </select>
+                                        </div>
                                         {{-- <div class="col-xl-5">
                                             <div class="form-group">
                                                 <label for="start_date">Start</label>
