@@ -63,7 +63,7 @@
                 <br>
                 <br>
                 <br>
-                <p>Penerima</p>
+                <p>Sekretaris</p>
             </div>
         </div>
     </div>
