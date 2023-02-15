@@ -49,7 +49,8 @@ class LaporanController extends Controller
         // return Excel::download(new SeleksiExport, 'laporan-data-seleksi.xlsx',\Maatwebsite\Excel\Excel::XLSX);
         $pendaftaran = Seleksi::where('status',$request->status)->with('pendaftaran.santri')->get();
         $pdf = Pdf::loadView('pdf.seleksi',[
-            'seleksi'=>$pendaftaran
+            'seleksi'=>$pendaftaran,
+            'status'=>$request->status
         ]);
         return $pdf->download('data-seleksi-santri-baru.pdf');
     }
