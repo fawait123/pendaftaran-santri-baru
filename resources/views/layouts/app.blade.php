@@ -2,7 +2,7 @@
     use App\Models\Notifkasi;
     $uri = Request::path();
     $uri = explode('/', $uri);
-
+    
     $notifications = Notifkasi::where('user_id', auth()->user()->id_user)
         ->where('is_read', false)
         ->limit(5)
@@ -205,6 +205,8 @@
                         <div id="sidebar-menu">
                             @if (auth()->user()->role == 'santri')
                                 @include('layouts.sidebar.santri')
+                            @elseif (auth()->user()->role == 'pengasuh')
+                                @include('layouts.sidebar.pengasuh')
                             @else
                                 @include('layouts.sidebar.admin')
                             @endif

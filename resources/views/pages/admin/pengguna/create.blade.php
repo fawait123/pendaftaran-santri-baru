@@ -59,6 +59,7 @@
                                         <option value="">-- pilih --</option>
                                         <option value="admin">Admin</option>
                                         <option value="santri">Santri</option>
+                                        <option value="pengasuh">Pengasuh</option>
                                     </select>
                                     @error('role')
                                         <span class="invalid-feedback" role="alert">
